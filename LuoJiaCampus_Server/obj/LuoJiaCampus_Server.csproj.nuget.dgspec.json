@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/thomas/Desktop/LuoJiaCampus_Server/LuoJiaCampus_Server.csproj": {}
+    "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/LuoJiaCampus_Server.csproj": {}
   },
   "projects": {
-    "/Users/thomas/Desktop/LuoJiaCampus_Server/LuoJiaCampus_Server.csproj": {
+    "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/LuoJiaCampus_Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/thomas/Desktop/LuoJiaCampus_Server/LuoJiaCampus_Server.csproj",
+        "projectUniqueName": "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/LuoJiaCampus_Server.csproj",
         "projectName": "LuoJiaCampus_Server",
-        "projectPath": "/Users/thomas/Desktop/LuoJiaCampus_Server/LuoJiaCampus_Server.csproj",
+        "projectPath": "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/LuoJiaCampus_Server.csproj",
         "packagesPath": "/Users/thomas/.nuget/packages/",
-        "outputPath": "/Users/thomas/Desktop/LuoJiaCampus_Server/obj/",
+        "outputPath": "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/thomas/.nuget/NuGet/NuGet.Config"
@@ -35,6 +35,24 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.6.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
