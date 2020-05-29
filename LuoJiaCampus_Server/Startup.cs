@@ -33,13 +33,13 @@ namespace LuoJiaCampus_Server {
                 options => {
                     options.TokenValidationParameters = new TokenValidationParameters {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1234567890123456")),
-
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1347909588@qq.com")),
+                        // 验证issuer
                         ValidateIssuer = true,
-                        ValidIssuer = "thomas",
-
+                        ValidIssuer = "LuoJiaCampus_Server",
+                        // 验证audience
                         ValidateAudience = true,
-                        ValidAudience = "thomas",
+                        ValidAudience = "LuoJiaCampush_Client",
 
                         ValidateLifetime = true,
 
@@ -49,7 +49,7 @@ namespace LuoJiaCampus_Server {
                 }
             );
             // replace "YourDbContext" with the class name of your DbContext
-            services.AddDbContextPool<MyDBContext>(options => options
+            services.AddDbContextPool<ServerDBContext>(options => options
                 // replace with your connection string
                 .UseMySql(Configuration.GetConnectionString("DefaultConnection"), mySqlOptions => mySqlOptions
                     // replace with your Server Version and Type
@@ -69,7 +69,8 @@ namespace LuoJiaCampus_Server {
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            // 添加jwt认证
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => {
