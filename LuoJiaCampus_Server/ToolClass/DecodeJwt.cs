@@ -1,9 +1,10 @@
 using System;
-using Jose;
 using System.Text;
+using Jose;
 
 namespace LuoJiaCampus_Server.ToolClasses {
     public class DecodeJwt {
+        // 用于解码token 用到jose-jwt包
         public static string decode(string tokenToDecode) {
             
             Console.WriteLine(tokenToDecode);

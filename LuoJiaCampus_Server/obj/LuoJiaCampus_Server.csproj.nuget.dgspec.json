@@ -36,11 +36,23 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "BouncyCastle": {
+            "AngleSharp": {
               "target": "Package",
-              "version": "[1.8.6.1, )"
+              "version": "[0.14.0, )"
+            },
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.23, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Microsoft.AspNetCore.NodeServices": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Microsoft.AspNetCore.SpaServices.EXtensions": {
               "target": "Package",
               "version": "[3.1.4, )"
             },

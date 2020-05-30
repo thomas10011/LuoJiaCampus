@@ -6,7 +6,6 @@ namespace LuoJiaCampus_Server.Models {
         public bool term { get; set; }                          // 学期：0上半学期 1下半学期
         public ICollection<CourseScore> socre { get; set; }     // 课程成绩
 
-
     }
 
 

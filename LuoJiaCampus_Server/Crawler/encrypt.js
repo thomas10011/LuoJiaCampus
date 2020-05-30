@@ -498,13 +498,14 @@ function _gas(data, key0,
     var encrypted = CryptoJS.AES.encrypt(data, key, {iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7});
     return encrypted.toString();
 }
-
-function encryptAES(data, _p1) {
+// 针对c#魔改过的函数 call用于返回值
+module.exports = function encryptAES(callback, data, _p1) {
     if (!_p1) {
         return data;
     }
     var encrypted = _gas(_rds(64) + data, _p1, _rds(16));
-    return encrypted;
+    // return encrypted;
+    callback(null, encrypted);
 }
 
 function _ep(p0, p1) {

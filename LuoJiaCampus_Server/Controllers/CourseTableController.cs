@@ -9,7 +9,10 @@ using Microsoft.AspNetCore.Authorization;
 using LuoJiaCampus_Server.ToolClasses;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+// using Microsoft.AspNetCore.SpaServices.Extensions;
+using Microsoft.AspNetCore.NodeServices;
+using System.Threading.Tasks;
+using LuoJiaCampus_Server.jw_Crawler;
 
 namespace LuoJiaCampus_Server.Controllers {
     [ApiController]
@@ -17,16 +20,18 @@ namespace LuoJiaCampus_Server.Controllers {
     [Route("api/[controller]")]
     public class CourseTableController: ControllerBase {
         private readonly ServerDBContext myDB;
-
+        private readonly INodeServices nodeServices;
         //构造函数把DBContext 作为参数，Asp.net core 框架可以自动注入DBContext对象
-        public CourseTableController(ServerDBContext context) {
-            this.myDB = context;
-            
+        public CourseTableController(ServerDBContext dbContext, INodeServices _nodeServices) {
+            this.myDB = dbContext;
+            this.nodeServices = _nodeServices;
         }
         
         [HttpGet]
         public ActionResult<News> GetNews(long id) {
             Console.WriteLine("get request");
+            CourseTableCrawler.initAttributes();
+
             // 得到当前的http请求
             var req = HttpContext.Request;
             string tokenToDecode = req.Headers["Authorization"].ToString().Split(' ').Last();     // 获取token
@@ -34,6 +39,9 @@ namespace LuoJiaCampus_Server.Controllers {
             JObject token = (JObject)JsonConvert.DeserializeObject(DecodeJwt.decode(tokenToDecode));
             string token_id = token["sub"].ToString();
             Console.WriteLine($"id frome token: {token_id}");
+
+            var t = getPwdEncrypted();
+
             News item;
             try {
                 item = myDB.news.FirstOrDefault(t => t.userid == id);
@@ -43,6 +51,14 @@ namespace LuoJiaCampus_Server.Controllers {
                 return BadRequest(e.InnerException.Message);
             }
             return item;
+        }
+
+        
+        public async Task<string> getPwdEncrypted() {
+            Console.WriteLine("try encrypt");
+            string pwd = await nodeServices.InvokeAsync<string>("./Crawler/encrypt.js", "190034", "dFI6ogbq90PNsNKt");
+            Console.WriteLine($"test encrypt password: {pwd}");
+            return pwd;
         }
 
         [HttpPost]

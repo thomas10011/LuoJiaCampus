@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using LuoJiaCampus_Server.Models;
+// using Microsoft.AspNetCore.NodeServices;
+using Microsoft.AspNetCore.SpaServices.Extensions;
 
 namespace LuoJiaCampus_Server {
     public class Startup {
@@ -28,6 +30,9 @@ namespace LuoJiaCampus_Server {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
+            // 添加nodejs调用服务
+            services.AddNodeServices();
+            // 添加jwt认证
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(
                 options => {
