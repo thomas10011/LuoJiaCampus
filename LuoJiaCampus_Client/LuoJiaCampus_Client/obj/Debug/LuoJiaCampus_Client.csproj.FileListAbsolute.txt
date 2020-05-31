@@ -1,0 +1,15 @@
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\bin\Debug\STUDENTINFO.exe.config
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\bin\Debug\STUDENTINFO.exe
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\bin\Debug\STUDENTINFO.pdb
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\obj\Debug\LuoJiaCampus_Client.csprojAssemblyReference.cache
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\obj\Debug\STUDENTINFO.Form1.resources
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\obj\Debug\STUDENTINFO.Properties.Resources.resources
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\obj\Debug\LuoJiaCampus_Client.csproj.GenerateResource.cache
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\obj\Debug\LuoJiaCampus_Client.csproj.CoreCompileInputs.cache
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\obj\Debug\LuoJiaCampus_Client.csproj.CopyComplete
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\obj\Debug\STUDENTINFO.exe
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\obj\Debug\STUDENTINFO.pdb
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\obj\Debug\STUDENTINFO.MainFrm.resources
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\obj\Debug\STUDENTINFO.ToolboxForm.resources
+C:\Users\jiang'hai'lan\Desktop\C#\LuoJiaCampus_Client\LuoJiaCampus_Client\obj\Debug\STUDENTINFO.GradeForm.resources
