@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using System.Text;
 using System.Security.Claims;
 using System;
@@ -8,8 +7,9 @@ using LuoJiaCampus_Server.Models;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.IdentityModel.Logging;
-using Microsoft.AspNetCore.Authorization;
-
+using Microsoft.AspNetCore.NodeServices;
+using LuoJiaCampus_Server.jw_Crawler;
+using System.Threading.Tasks;
 
 namespace LuoJiaCampus_Server.Controllers {
     [ApiController]
@@ -17,8 +17,10 @@ namespace LuoJiaCampus_Server.Controllers {
     [Route("Authenticate/")]
     public class AuthenticateController: ControllerBase {
         private readonly ServerDBContext db;
-        public AuthenticateController(ServerDBContext context) {
+        private readonly INodeServices nodeServices;
+        public AuthenticateController(ServerDBContext context, INodeServices _nodeServices) {
             db = context;
+            nodeServices = _nodeServices;
         }
 
         [HttpPost]
@@ -36,6 +38,10 @@ namespace LuoJiaCampus_Server.Controllers {
             }
             // 验证密码 验证不通过应尝试登录教务系统爬取信息 若无法登录返回错误
             if(query.password != user.password || query.portalpwd != user.portalpwd) {
+                CourseTableCrawler.initAttributes();
+                CourseTableCrawler.login(user.id, getPwdEncrypted(query.portalpwd, CourseTableCrawler.dynamicPwdEncryptSalt).ToString());
+
+
                 return BadRequest("wrong password!");
             }
 
@@ -54,13 +60,20 @@ namespace LuoJiaCampus_Server.Controllers {
             var token = new JwtSecurityToken (
                 // issuer代表颁发token的程序
                 issuer: "LuoJiaCampus_Server",
-                // audience代表受理token的程序
+                // audience代表受理token的程序 
                 audience: "LuoJiaCampush_Client",
                 // 过期时间
                 expires: DateTime.Now.AddHours(2),
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
             );
+            // getPwdEncrypted(query.portalpwd, "GheU0MKCr74LlqAa");
+            CourseTableCrawler.initAttributes();
+            CourseTableCrawler.login_webreq(user.id, getPwdEncrypted(query.portalpwd, CourseTableCrawler.dynamicPwdEncryptSalt).ToString());
+
+
+
+
             
             return Ok(
                 new {
@@ -70,6 +83,14 @@ namespace LuoJiaCampus_Server.Controllers {
                     expiration = token.ValidTo
                 }
             );
+            
+        }
+
+        public async Task<string> getPwdEncrypted(string pwdToEncrypt, string salt) {
+            Console.WriteLine("try encrypt");
+            string pwd = nodeServices.InvokeAsync<string>("./Crawler/encrypt.js", pwdToEncrypt, salt).Result;
+            Console.WriteLine($"encrypted password: {pwd}");
+            return pwd;
         }
 
     }

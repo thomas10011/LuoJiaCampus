@@ -41,7 +41,6 @@ namespace LuoJiaCampus_Server.Controllers {
             Console.WriteLine($"id frome token: {token_id}");
 
             var t = getPwdEncrypted();
-
             News item;
             try {
                 item = myDB.news.FirstOrDefault(t => t.userid == id);
@@ -54,12 +53,6 @@ namespace LuoJiaCampus_Server.Controllers {
         }
 
         
-        public async Task<string> getPwdEncrypted() {
-            Console.WriteLine("try encrypt");
-            string pwd = await nodeServices.InvokeAsync<string>("./Crawler/encrypt.js", "190034", "dFI6ogbq90PNsNKt");
-            Console.WriteLine($"test encrypt password: {pwd}");
-            return pwd;
-        }
 
         [HttpPost]
         public ActionResult<User> PostToUser(User user) {
@@ -73,6 +66,13 @@ namespace LuoJiaCampus_Server.Controllers {
                 return BadRequest(e.InnerException.Message);
             }
             return user;
+        }
+
+        public async Task<string> getPwdEncrypted() {
+            Console.WriteLine("try encrypt");
+            string pwd = await nodeServices.InvokeAsync<string>("./Crawler/encrypt.js", "190034", "ZY6ZtYaijmQIHnhG");
+            Console.WriteLine($"test encrypt password: {pwd}");
+            return pwd;
         }
     }
 
