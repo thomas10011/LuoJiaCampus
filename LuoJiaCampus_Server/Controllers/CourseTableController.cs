@@ -30,7 +30,7 @@ namespace LuoJiaCampus_Server.Controllers {
         [HttpGet]
         public ActionResult<News> GetNews(long id) {
             Console.WriteLine("get request");
-            CourseTableCrawler.initAttributes();
+            JwCrawler.initAttributes();
 
             // 得到当前的http请求
             var req = HttpContext.Request;
