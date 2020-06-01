@@ -39,7 +39,7 @@ namespace LuoJiaCampus_Server.Controllers {
             // 验证密码 验证不通过应尝试登录教务系统爬取信息 若无法登录返回错误
             if(query.password != user.password || query.portalpwd != user.portalpwd) {
                 CourseTableCrawler.initAttributes();
-                CourseTableCrawler.login(user.id, getPwdEncrypted(query.portalpwd, CourseTableCrawler.dynamicPwdEncryptSalt).ToString());
+                CourseTableCrawler.login(user.id, getPwdEncrypted(query.portalpwd, CourseTableCrawler.dynamicPwdEncryptSalt).Result);
 
 
                 return BadRequest("wrong password!");
@@ -69,7 +69,8 @@ namespace LuoJiaCampus_Server.Controllers {
             );
             // getPwdEncrypted(query.portalpwd, "GheU0MKCr74LlqAa");
             CourseTableCrawler.initAttributes();
-            CourseTableCrawler.login_webreq(user.id, getPwdEncrypted(query.portalpwd, CourseTableCrawler.dynamicPwdEncryptSalt).ToString());
+            string portalpwd = getPwdEncrypted(query.portalpwd, CourseTableCrawler.dynamicPwdEncryptSalt).Result;
+            CourseTableCrawler.login(user.id, portalpwd);
 
 
 

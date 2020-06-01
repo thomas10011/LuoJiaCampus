@@ -24,6 +24,9 @@ namespace LuoJiaCampus_Server.jw_Crawler {
         public static string rmShown = null;
         public static string dynamicPwdEncryptSalt = null;
 
+        public static string route = null;
+        public static string JSESSIONID = null;
+
         // 静态变量client
         private static readonly HttpClientHandler handler = new HttpClientHandler {
             AllowAutoRedirect = true,
@@ -36,10 +39,29 @@ namespace LuoJiaCampus_Server.jw_Crawler {
 
         // 获取登录页面的相关信息
         public static void initAttributes() {
+            client.DefaultRequestHeaders.Clear();
+
+            CourseTableCrawler.client.DefaultRequestHeaders.Add(
+                "Accept",
+                "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+            );
+            // 首先拿到route和JSESSIONID
+            HttpResponseMessage res = client.GetAsync("https://cas.whu.edu.cn/authserver/login?service=http%3A%2F%2Fehall.whu.edu.cn%2Flogin%3Fservice%3Dhttp%3A%2F%2Fehall.whu.edu.cn%2Fnew%2Findex.html").Result;
+            
+            CookieCollection cookies = handler.CookieContainer.GetCookies(new Uri(loginPage));
+            foreach(Cookie ck in cookies) {
+                Console.WriteLine("cookie: " + ck.Value);
+            }
+            route = cookies.First().ToString();
+            JSESSIONID = cookies.Last().ToString();
+            
+            var resStr = res.Content.ReadAsStreamAsync().Result;
             try {
                 HtmlWeb web = new HtmlWeb();
-                HtmlDocument doc = web.Load(loginPage);
-                
+                HtmlDocument doc = new HtmlDocument();
+                Console.WriteLine(resStr);
+                doc.Load(resStr);
+
                 HtmlNode node;
                 node = doc.DocumentNode.SelectSingleNode("//input[@name='lt']");
                 CourseTableCrawler.lt = node.Attributes["value"].Value;
@@ -68,12 +90,8 @@ namespace LuoJiaCampus_Server.jw_Crawler {
 
         // 传入学号和加密过的信息门户密码
         public static void login(long userid, string portalPwd) {
+
             client.DefaultRequestHeaders.Clear();
-            // 首先拿到route和JSESSIONID
-            HttpResponseMessage res = client.GetAsync(loginPage).Result;
-            CookieCollection cookies = handler.CookieContainer.GetCookies(new Uri(loginPage));
-            string route = cookies.First().ToString();
-            string JSESSIONID = cookies.Last().ToString();
 
             // 设置请求头信息
             CourseTableCrawler.client.DefaultRequestHeaders.Add(
@@ -95,19 +113,6 @@ namespace LuoJiaCampus_Server.jw_Crawler {
             CourseTableCrawler.client.DefaultRequestHeaders.Add(
                 "Connection",
                 "keep-alive"
-            );
-            // CourseTableCrawler.client.DefaultRequestHeaders.Add(
-            //     "Content-Length",
-            //     "284"
-            // );
-            // CourseTableCrawler.client.DefaultRequestHeaders.Add(
-            //     "Content-Type",
-            //     "application/x-www-form-urlencoded"
-            // );
-            CourseTableCrawler.client.DefaultRequestHeaders.Add(
-                "Cookie",
-                // "route=8c7076a82edeaa59289b09897f5abc7c; JSESSIONID=q6pqZeU1LL-ASIy85DiBhMm4BGRTJRFJ-FYfh8mkbiKJhmRISutK!-195412049"
-                route + "; " + JSESSIONID
             );
             CourseTableCrawler.client.DefaultRequestHeaders.Add(
                 "Host",
@@ -145,11 +150,8 @@ namespace LuoJiaCampus_Server.jw_Crawler {
                 "User-Agent",
                 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
             );
-            var cks = client.DefaultRequestHeaders.GetValues("Cookie");
-            foreach(string o in cks){
-                Console.WriteLine(o);
-            }
-            Console.WriteLine();
+            
+            
             // 构造post参数
             HttpContent postBody = new FormUrlEncodedContent(
                 new Dictionary<string, string>() {
@@ -165,7 +167,7 @@ namespace LuoJiaCampus_Server.jw_Crawler {
             
             HttpResponseMessage response = client.PostAsync(loginPage, postBody).Result;
             Console.WriteLine($"return status: {response.StatusCode}");
-            cookies = handler.CookieContainer.GetCookies(new Uri(loginPage));
+            CookieCollection cookies = handler.CookieContainer.GetCookies(new Uri(loginPage));
             foreach(Cookie c in cookies) {
                 Console.WriteLine(c.ToString());
             }
@@ -184,14 +186,11 @@ namespace LuoJiaCampus_Server.jw_Crawler {
         
         // 试一下另一种方法
         public static void login_webreq(long userid, string portalPwd) {
+            Console.WriteLine("passwrod is :" + portalPwd);
+            Console.WriteLine($"route: {route}, jsessionid: {JSESSIONID}");
+
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(loginPage);
 
-            // 首先拿到route和JSESSIONID
-            HttpResponseMessage res = client.GetAsync(loginPage).Result;
-            CookieCollection cookies = handler.CookieContainer.GetCookies(new Uri(loginPage));
-            string route = cookies.First().ToString();
-            string JSESSIONID = cookies.Last().ToString();
-            
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
             request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
@@ -247,7 +246,16 @@ namespace LuoJiaCampus_Server.jw_Crawler {
                 "Upgrade-Insecure-Requests",
                 "1"
             );
-            
+            // 打印请求头
+            foreach(string k in request.Headers.AllKeys) {
+                var value = request.Headers.GetValues(k);
+                Console.WriteLine("request header: " + k);
+                foreach(string t in value) {
+                    Console.Write(t + " ");
+                }
+                Console.WriteLine();
+            }
+
             var postData = "username=" + userid.ToString();
             postData += "&password=" + portalPwd;
             postData += "&lt=" + CourseTableCrawler.lt;
@@ -256,12 +264,13 @@ namespace LuoJiaCampus_Server.jw_Crawler {
             postData += "&_eventId=" + CourseTableCrawler._eventId;
             postData += "&rmShown=" + CourseTableCrawler.rmShown;
 
-            var data = Encoding.ASCII.GetBytes(postData);
+            var data = Encoding.UTF8.GetBytes(postData);
             using(Stream reqStream = request.GetRequestStream()) {
                 reqStream.Write(data, 0, data.Length);
             }
 
-            request.ContentLength = data.Length;
+            request.ContentLength = data.Length;        // 设置消息内容的长度
+
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             Console.WriteLine(response.StatusCode);
             foreach(string k in response.Headers.AllKeys) {
