@@ -27,7 +27,7 @@ namespace LuoJiaCampus_Server.Controllers {
         }
         
         [HttpGet]
-        public ActionResult<News> GetNews(long id) {
+        public ActionResult<List<Course>> GetNews() {
             Console.WriteLine("get request");
             JwCrawler.initAttributes();
 
@@ -36,19 +36,20 @@ namespace LuoJiaCampus_Server.Controllers {
             string tokenToDecode = req.Headers["Authorization"].ToString().Split(' ').Last();     // 获取token
             // 解码的token转化为json对象
             JObject token = (JObject)JsonConvert.DeserializeObject(DecodeJwt.decode(tokenToDecode));
-            string token_id = token["sub"].ToString();
+            string token_id = token["sub"].ToString();      // 拿到id
             Console.WriteLine($"id frome token: {token_id}");
 
-            var t = getPwdEncrypted();
-            News item;
-            try {
-                item = myDB.news.FirstOrDefault(t => t.userid == id);
-                var user = myDB.users.FirstOrDefault();
-            }
-            catch(Exception e) {
-                return BadRequest(e.InnerException.Message);
-            }
-            return item;
+            // 根据id从数据库里面查询密码
+            User query = myDB.users.FirstOrDefault(
+                o => o.id == Convert.ToInt64(token_id)
+            );
+            // 调用爬虫
+            JwCrawler.initAttributes();
+            JwCrawler.login(query.id, getPwdEncrypted(query.portalpwd, JwCrawler.dynamicPwdEncryptSalt).Result);
+            List<Course> courses = CourseTableCrawler.crawlCourseTable();
+
+            
+            return courses;
         }
 
         
@@ -67,9 +68,9 @@ namespace LuoJiaCampus_Server.Controllers {
             return user;
         }
 
-        public async Task<string> getPwdEncrypted() {
+        public async Task<string> getPwdEncrypted(string pwdToEncrypt, string salt) {
             Console.WriteLine("try encrypt");
-            string pwd = await nodeServices.InvokeAsync<string>("./Crawler/encrypt.js", "190034", "ZY6ZtYaijmQIHnhG");
+            string pwd = await nodeServices.InvokeAsync<string>("./Crawler/encrypt.js", pwdToEncrypt, salt);
             Console.WriteLine($"test encrypt password: {pwd}");
             return pwd;
         }

@@ -5,11 +5,14 @@ using AngleSharp.Html.Parser;
 using HtmlAgilityPack;
 using System.Net;
 using System.IO;
-
+using LuoJiaCampus_Server.Models;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace LuoJiaCampus_Server.jw_Crawler {
     public class CourseTableCrawler {
-        public static void crawlCourseTable () {
+        public static List<Course> crawlCourseTable () {
             JwCrawler.client.DefaultRequestHeaders.Clear(); 
             JwCrawler.client.DefaultRequestHeaders.Add(
                 "Accept",
@@ -60,13 +63,74 @@ namespace LuoJiaCampus_Server.jw_Crawler {
                 
             }
 
-            var courseTableHtml = response.Content.ReadAsStreamAsync().Result;
+            var courseTableHtml = response.Content.ReadAsStringAsync().Result;
             HtmlDocument doc = new HtmlDocument();
             
-            doc.Load(courseTableHtml);
-            Console.WriteLine(response.Content.ReadAsStringAsync().Result);   // 打印出来看看
+            doc.LoadHtml(courseTableHtml);
+            Console.WriteLine(courseTableHtml);   // 打印出来看看
 
+            /*-------------------------下面将课表转化为实体集合-----------------------------*/
+            List<Course> courses = new List<Course>();
+            HtmlNode bodyNode = doc.DocumentNode.SelectSingleNode("//table");
+            bool flag = true;       // 用来跳过第一行的表头
+            foreach(HtmlNode row in bodyNode.SelectNodes(".//tr")) {
+                if(flag) {
+                    flag = false;
+                    continue;
+                }
+                short count = 0;
+                Course course = new Course();
+                foreach(HtmlNode column in row.SelectNodes(".//td")) {
+
+                    string result = Regex.Replace(column.InnerText, @"\s", "");
+                    
+                    
+                    switch(count) {
+                        case 0:
+                            course.courseNum = Convert.ToInt64(result);
+                            break;
+                        case 1:
+                            course.courseName = result;
+                            break;
+                        case 2:
+                            course.courseType = result;
+                            break;
+                        case 3:
+                            course.learnType = result;
+                            break;
+                        case 4:
+                            course.school = result;
+                            break;
+                        case 5:
+                            course.teacherName = result;
+                            break;
+                        case 6:
+                            course.major = result;
+                            break;
+                        case 7:
+                            course.credits = (float)Convert.ToDouble(result);
+                            break;
+                        case 8:
+                            course.learnTime = result;
+                            break;
+                        case 9:
+                            course.courseTime = result;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    count++;
+                    Console.WriteLine(result);
+                    
+                }
+                courses.Add(course);
+            }
+            
+            Console.WriteLine(JsonConvert.SerializeObject(courses));
+            return courses;
         }
+        
     }
 
 }

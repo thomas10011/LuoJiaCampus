@@ -1,11 +1,11 @@
 
 namespace LuoJiaCampus_Server.Models {
     public class Course {
-        public short credits { get; set; }                      // 学分
+        public float credits { get; set; }                      // 学分
         public long courseNum { get; set; }                      // 课头号
         public string courseName { get; set; }                  // 课程名
         public string courseType { get; set; }                  // 课程类型 
-        public string leranTyoe { get; set; }                   // 学习类型 普通/重修
+        public string learnType { get; set; }                   // 学习类型 普通/重修
         public string school { get; set; }                      // 授课学院
         public string teacherName { get; set; }                 // 教师名
         public string major { get; set; }                       // 专业

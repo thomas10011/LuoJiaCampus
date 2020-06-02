@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace LuoJiaCampus_Server.jw_Crawler {
     public class StudentInfoCrawler {
-        public static void crawlStudentInfo() {
+        public static User crawlStudentInfo() {
             JwCrawler.client.DefaultRequestHeaders.Clear(); 
             JwCrawler.client.DefaultRequestHeaders.Add(
                 "Accept",
@@ -53,11 +53,11 @@ namespace LuoJiaCampus_Server.jw_Crawler {
                 
             }
 
-            var courseTableHtml = response.Content.ReadAsStreamAsync().Result;
+            var stuInfoHtml = response.Content.ReadAsStringAsync().Result;
             HtmlDocument doc = new HtmlDocument();
             
-            doc.LoadHtml(response.Content.ReadAsStringAsync().Result);
-            Console.WriteLine(response.Content.ReadAsStringAsync().Result);   // 打印出来看看
+            doc.LoadHtml(stuInfoHtml);
+            Console.WriteLine(stuInfoHtml);   // 打印出来看看
 
             /*---------------------------下面对html进行解析-------------------------------------*/
             HtmlNode node;
@@ -83,14 +83,15 @@ namespace LuoJiaCampus_Server.jw_Crawler {
             User newUser = new User();
             newUser.id = stuId;
             newUser.grade = grade;
-            newUser.password = "19991119";
-            newUser.portalpwd = "190034";
+            newUser.password = "";              // 这两个密码返回后再设置
+            newUser.portalpwd = "";
             newUser.nmae = name;
             newUser.school = department;
             newUser.gender = gender;
             newUser.major = profession;
             
             Console.WriteLine(JsonConvert.SerializeObject(newUser));            // 打印出来看看
+            return newUser;
         }
 
 

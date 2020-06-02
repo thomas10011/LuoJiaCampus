@@ -1,3 +1,4 @@
+using System.Data.Common;
 using System.Text;
 using System.Security.Claims;
 using System;
@@ -36,13 +37,26 @@ namespace LuoJiaCampus_Server.Controllers {
             catch (Exception e) {
                 return BadRequest(e.InnerException.Message);
             }
-            // 验证密码 验证不通过应尝试登录教务系统爬取信息 若无法登录返回错误
-            if(query.password != user.password || query.portalpwd != user.portalpwd) {
+            // 查询不到用户或者密码验证不通过应尝试登录教务系统爬取信息 若无法登录返回错误
+            if(query == null || query.password != user.password || query.portalpwd != user.portalpwd)
+            
+             {
                 JwCrawler.initAttributes();
-                JwCrawler.login(user.id, getPwdEncrypted(query.portalpwd, JwCrawler.dynamicPwdEncryptSalt).Result);
+                bool result = JwCrawler.login(user.id, getPwdEncrypted(user.portalpwd, JwCrawler.dynamicPwdEncryptSalt).Result);
 
+                if (!result)
+                    return BadRequest("wrong password!");
 
-                return BadRequest("wrong password!");
+                // 登录成功的话，爬下来个人信息保存到数据库
+                User newUser = StudentInfoCrawler.crawlStudentInfo();
+                newUser.password = user.password;
+                newUser.portalpwd = user.portalpwd;
+                if (query == null)
+                    db.users.Add(newUser);
+                else
+                    db.users.Update(newUser);
+
+                db.SaveChanges();
             }
 
 
@@ -70,7 +84,7 @@ namespace LuoJiaCampus_Server.Controllers {
             // getPwdEncrypted(query.portalpwd, "GheU0MKCr74LlqAa");
             JwCrawler.initAttributes();
             string portalpwd = getPwdEncrypted(query.portalpwd, JwCrawler.dynamicPwdEncryptSalt).Result;
-            JwCrawler.login(user.id, portalpwd);
+            // JwCrawler.login(user.id, portalpwd);
 
 
 
