@@ -428,7 +428,8 @@ namespace LuoJiaCampus_Server.jw_Crawler {
 
             csrftoken = result;
 
-            CourseTableCrawler.crawlCourseTable();
+            // CourseTableCrawler.crawlCourseTable();
+            StudentInfoCrawler.crawlStudentInfo();
 
         }
         
