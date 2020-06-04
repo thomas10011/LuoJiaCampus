@@ -57,7 +57,7 @@ namespace LuoJiaCampus_Server.jw_Crawler {
             HtmlDocument doc = new HtmlDocument();
             
             doc.LoadHtml(stuInfoHtml);
-            Console.WriteLine(stuInfoHtml);   // 打印出来看看
+            // Console.WriteLine(stuInfoHtml);   // 打印出来看看
 
             /*---------------------------下面对html进行解析-------------------------------------*/
             HtmlNode node;

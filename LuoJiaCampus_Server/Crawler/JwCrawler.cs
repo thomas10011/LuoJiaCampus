@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
 using System.Net.WebSockets;
@@ -18,9 +19,9 @@ using System.IO;
 namespace LuoJiaCampus_Server.jw_Crawler {
     
     public class JwCrawler {
-        public static string loginPage = @"https://cas.whu.edu.cn/authserver/login?service=http%3A%2F%2Fehall.whu.edu.cn%2Flogin%3Fservice%3Dhttp%3A%2F%2Fehall.whu.edu.cn%2Fnew%2Findex.html%3Fbrowser%3Dno";
+        public static string loginPage = @"https://cas.whu.edu.cn/authserver/login?service=http%3A%2F%2Fehall.whu.edu.cn%2Flogin%3Fservice%3Dhttp%3A%2F%2Fehall.whu.edu.cn%2Fnew%2Findex.html";
         public static string cas2jwPage = @"https://cas.whu.edu.cn/authserver/login?service=http%3A%2F%2Fbkjw.whu.edu.cn%2Fcommon%2Fcaslogin.jsp";
-        
+        public static string logoutPage = @"http://cas.whu.edu.cn/authserver/logout?service=http://ehall.whu.edu.cn/new/index.html";
         // public static string
         public static string lt = null;
         public static string dllt = null;
@@ -39,7 +40,7 @@ namespace LuoJiaCampus_Server.jw_Crawler {
         // 静态变量client
         public static readonly HttpClientHandler handler = new HttpClientHandler {
             AllowAutoRedirect = true,
-            UseCookies = true
+            UseCookies = true,
         };
         public static readonly HttpClient client = new HttpClient(handler);
         public static readonly HtmlParser parser = new HtmlParser();
@@ -49,13 +50,15 @@ namespace LuoJiaCampus_Server.jw_Crawler {
         // 获取登录页面的相关信息
         public static void initAttributes() {
             client.DefaultRequestHeaders.Clear();
+            // CookieContainer c = new CookieContainer();
+            
 
             JwCrawler.client.DefaultRequestHeaders.Add(
                 "Accept",
                 "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
             );
             // 首先拿到route和JSESSIONID
-            HttpResponseMessage res = client.GetAsync("https://cas.whu.edu.cn/authserver/login?service=http%3A%2F%2Fehall.whu.edu.cn%2Flogin%3Fservice%3Dhttp%3A%2F%2Fehall.whu.edu.cn%2Fnew%2Findex.html").Result;
+            HttpResponseMessage res = client.GetAsync(loginPage).Result;
             
             CookieCollection cookies = handler.CookieContainer.GetCookies(new Uri(loginPage));
             foreach(Cookie ck in cookies) {
@@ -375,7 +378,6 @@ namespace LuoJiaCampus_Server.jw_Crawler {
             cookies = handler.CookieContainer.GetCookies(new Uri(redirect2jw));   // 拿到cookie
             foreach(Cookie c in cookies) {
                 Console.WriteLine(c.ToString());
-                Console.WriteLine(c.Value);
                 
             }
 
@@ -430,7 +432,7 @@ namespace LuoJiaCampus_Server.jw_Crawler {
 
             csrftoken = result;
 
-            CourseTableCrawler.crawlCourseTable();
+            // CourseTableCrawler.crawlCourseTable();
             // StudentInfoCrawler.crawlStudentInfo();
             
             return true;
@@ -442,7 +444,7 @@ namespace LuoJiaCampus_Server.jw_Crawler {
 
 
         // 试一下另一种方法
-        public static void login_webreq(long userid, string portalPwd) {
+        public static bool login_webreq(long userid, string portalPwd) {
             Console.WriteLine("passwrod is :" + portalPwd);
             Console.WriteLine($"route: {route}, jsessionid: {JSESSIONID}");
 
@@ -454,6 +456,7 @@ namespace LuoJiaCampus_Server.jw_Crawler {
             request.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36";
             request.KeepAlive = true;
             request.AllowAutoRedirect = true;
+            
             request.Headers.Add(
                 "Accept-Encoding",
                 "gzip, deflate, br"
@@ -469,7 +472,11 @@ namespace LuoJiaCampus_Server.jw_Crawler {
             request.Headers.Add(
                 "Cookie",
                 // "route=8c7076a82edeaa59289b09897f5abc7c; JSESSIONID=q6pqZeU1LL-ASIy85DiBhMm4BGRTJRFJ-FYfh8mkbiKJhmRISutK!-195412049"
-                route + "; " + JSESSIONID
+                route
+            );
+            request.Headers.Add(
+                "Coookie",
+                JSESSIONID
             );
             request.Headers.Add(
                 "Host",
@@ -481,7 +488,7 @@ namespace LuoJiaCampus_Server.jw_Crawler {
             );
             request.Headers.Add(
                 "Referer",
-                "https://cas.whu.edu.cn/authserver/login?service=http%3A%2F%2Fehall.whu.edu.cn%2Flogin%3Fservice%3Dhttp%3A%2F%2Fehall.whu.edu.cn%2Fnew%2Findex.html%3Fbrowser%3Dno"
+                loginPage
             );
             request.Headers.Add(
                 "Sec-Fetch-Dest",
@@ -527,16 +534,105 @@ namespace LuoJiaCampus_Server.jw_Crawler {
             }
 
             request.ContentLength = data.Length;        // 设置消息内容的长度
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Console.WriteLine(response.StatusCode);
-            foreach(string k in response.Headers.AllKeys) {
-                Console.WriteLine($"key: {k},  value: {response.Headers.GetValues(k).FirstOrDefault()}");
+            HttpWebResponse response = null;
+            try {
+                response = (HttpWebResponse)request.GetResponse();
             }
-            var responseStr = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            Console.WriteLine(responseStr);
+            catch(System.Net.WebException e) {  // 处理302重定向
+                response = (HttpWebResponse)e.Response;
+                
+                Console.WriteLine(response.StatusCode);
+                foreach(string k in response.Headers.AllKeys) {
+                    Console.WriteLine($"key: {k},  value: {response.Headers.GetValues(k).FirstOrDefault()}");
+                }
+                var responseStr = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                // Console.WriteLine(responseStr);
+                
+                // foreach(var header in response.Headers) {
+                //     Console.WriteLine("head: " + header.ToString());
+                //     Console.WriteLine("value: " + response.Headers.GetValues(header.ToString().FirstOrDefault()));
+                // }
+
+                foreach(Cookie c in response.Cookies) {
+                    Console.WriteLine("cookie: " + c);
+                }
+                return true;
+            }
+            finally {
+                // do nothing
+            }
+            
+            return false;
+
+            
         }
 
+        public static void logout() {
+            Console.WriteLine("\n\t\t tring to logout \n");
+            client.DefaultRequestHeaders.Clear();           // 准备重新构造请求头
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "Accept",
+                "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+            );
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "Accept-Encoding",
+                "gzip, deflate"
+            );
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "Accept-Language",
+                "zh-CN,zh;q=0.9,en;q=0.8"
+            );
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "Connection",
+                "keep-alive"
+            );
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "Host",
+                "cas.whu.edu.cn"
+            );
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "Referer",
+                "http://ehall.whu.edu.cn/new/index.html?browser=no"
+            );
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "Upgrade-Insecure-Requests",
+                "1"
+            );
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "User-Agent",
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
+            );
+            // 要重新设置Cookie
+            // handler.CookieContainer.SetCookies(redirectStr, )
+
+            HttpResponseMessage response = client.GetAsync(logoutPage).Result;       // 发请求 这时候应该会返回一次404
+            Console.WriteLine($"return status: {response.StatusCode}");
+            CookieCollection cookies = handler.CookieContainer.GetCookies(new Uri(logoutPage));   // 拿到cookie
+            foreach(Cookie c in cookies) {
+                Console.WriteLine(c.ToString());
+                
+            }
+
+            // 打印响应头
+            foreach(var head in response.Headers) {
+                Console.WriteLine($"response head key: {head.Key}");
+                Console.Write("value: ");
+                foreach(string o in head.Value) {
+                    Console.Write(o + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public static void expireCookie(string domain) {
+            var cookies = handler.CookieContainer.GetCookies(new Uri(domain));
+            if(cookies != null) {
+                foreach (Cookie co in cookies){
+                    co.Expires = DateTime.Now.Subtract(TimeSpan.FromDays(1));
+                }
+            }
+            
+        }
 
     }
 

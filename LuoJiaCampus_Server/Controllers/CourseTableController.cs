@@ -1,4 +1,3 @@
-using System.Net;
 using System.Collections.Generic;
 using System;
 using System.Linq;
@@ -18,11 +17,11 @@ namespace LuoJiaCampus_Server.Controllers {
     [Authorize]
     [Route("api/[controller]")]
     public class CourseTableController: ControllerBase {
-        private readonly ServerDBContext myDB;
+        private readonly ServerDBContext db;
         private readonly INodeServices nodeServices;
         //构造函数把DBContext 作为参数，Asp.net core 框架可以自动注入DBContext对象
         public CourseTableController(ServerDBContext dbContext, INodeServices _nodeServices) {
-            this.myDB = dbContext;
+            this.db = dbContext;
             this.nodeServices = _nodeServices;
         }
         
@@ -40,37 +39,24 @@ namespace LuoJiaCampus_Server.Controllers {
             Console.WriteLine($"id frome token: {token_id}");
 
             // 根据id从数据库里面查询密码
-            User query = myDB.users.FirstOrDefault(
+            User query = db.users.FirstOrDefault(
                 o => o.id == Convert.ToInt64(token_id)
             );
             // 调用爬虫
             JwCrawler.initAttributes();
             JwCrawler.login(query.id, getPwdEncrypted(query.portalpwd, JwCrawler.dynamicPwdEncryptSalt).Result);
             List<Course> courses = CourseTableCrawler.crawlCourseTable();
-
-            
+            JwCrawler.logout();
             return courses;
         }
 
         
 
-        [HttpPost]
-        public ActionResult<User> PostToUser(User user) {
-            Console.WriteLine("receive post request");
-            try {
-                myDB.users.Add(user);
-                myDB.SaveChanges();
-
-            }
-            catch(Exception e) {
-                return BadRequest(e.InnerException.Message);
-            }
-            return user;
-        }
+        
 
         public async Task<string> getPwdEncrypted(string pwdToEncrypt, string salt) {
             Console.WriteLine("try encrypt");
-            string pwd = await nodeServices.InvokeAsync<string>("./Crawler/encrypt.js", pwdToEncrypt, salt);
+            string pwd = await nodeServices.InvokeAsync<string>(Constants.encryptJsRoute, pwdToEncrypt, salt);
             Console.WriteLine($"test encrypt password: {pwd}");
             return pwd;
         }

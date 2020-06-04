@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Logging;
 using Microsoft.AspNetCore.NodeServices;
 using LuoJiaCampus_Server.jw_Crawler;
 using System.Threading.Tasks;
+using LuoJiaCampus_Server.ToolClasses;
 
 namespace LuoJiaCampus_Server.Controllers {
     [ApiController]
@@ -28,6 +29,7 @@ namespace LuoJiaCampus_Server.Controllers {
         [Route("login")]
         public IActionResult login([FromBody]User user) {
             User query;
+            // 首先尝试从数据库读取用户信息
             try {
                 query = db.users.FirstOrDefault(
                     o => o.id == user.id
@@ -57,6 +59,9 @@ namespace LuoJiaCampus_Server.Controllers {
                     db.users.Update(newUser);
 
                 db.SaveChanges();
+
+                // 退出登录
+                JwCrawler.logout();
             }
 
 
@@ -81,13 +86,6 @@ namespace LuoJiaCampus_Server.Controllers {
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
             );
-            // getPwdEncrypted(query.portalpwd, "GheU0MKCr74LlqAa");
-            JwCrawler.initAttributes();
-            string portalpwd = getPwdEncrypted(query.portalpwd, JwCrawler.dynamicPwdEncryptSalt).Result;
-            // JwCrawler.login(user.id, portalpwd);
-
-
-
 
             
             return Ok(
@@ -103,7 +101,8 @@ namespace LuoJiaCampus_Server.Controllers {
 
         public async Task<string> getPwdEncrypted(string pwdToEncrypt, string salt) {
             Console.WriteLine("try encrypt");
-            string pwd = nodeServices.InvokeAsync<string>("./Crawler/encrypt.js", pwdToEncrypt, salt).Result;
+            Console.WriteLine("js Location: " + Constants.encryptJsRoute);
+            string pwd = nodeServices.InvokeAsync<string>(Constants.encryptJsRoute, pwdToEncrypt, salt).Result;
             Console.WriteLine($"encrypted password: {pwd}");
             return pwd;
         }

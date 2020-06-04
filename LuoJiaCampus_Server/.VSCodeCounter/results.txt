@@ -1,65 +1,107 @@
-Date : 2020-05-29 10:41:11
+Date : 2020-06-03 18:25:17
 Directory : /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server
-Total : 28 files,  26187 codes, 24 comments, 73 blanks, all 26284 lines
+Total : 57 files,  48186 codes, 507 comments, 174 blanks, all 48867 lines
 
 Languages
-+----------+------------+------------+------------+------------+------------+
-| language | files      | code       | comment    | blank      | total      |
-+----------+------------+------------+------------+------------+------------+
-| JSON     |         12 |     25,880 |          0 |          6 |     25,886 |
-| C#       |         12 |        274 |         24 |         62 |        360 |
-| XML      |          4 |         33 |          0 |          5 |         38 |
-+----------+------------+------------+------------+------------+------------+
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |         26 |     46,339 |          0 |         13 |     46,352 |
+| JavaScript |          2 |      1,036 |          4 |         16 |      1,056 |
+| C#         |         24 |        772 |        503 |        140 |      1,415 |
+| XML        |          5 |         39 |          0 |          5 |         44 |
++------------+------------+------------+------------+------------+------------+
 
 Directories
-+----------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
-| path                                                                                                                                   | files      | code       | comment    | blank      | total      |
-+----------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
-| .                                                                                                                                      |         28 |     26,187 |         24 |         73 |     26,284 |
-| Controllers                                                                                                                            |          3 |        101 |          7 |         20 |        128 |
-| Models                                                                                                                                 |          4 |         66 |          0 |         14 |         80 |
-| Properties                                                                                                                             |          1 |         30 |          0 |          1 |         31 |
-| bin                                                                                                                                    |          6 |      3,985 |          0 |          3 |      3,988 |
-| bin/Debug                                                                                                                              |          6 |      3,985 |          0 |          3 |      3,988 |
-| bin/Debug/netcoreapp3.1                                                                                                                |          6 |      3,985 |          0 |          3 |      3,988 |
-| bin/Debug/netcoreapp3.1/Properties                                                                                                     |          1 |         30 |          0 |          1 |         31 |
-| obj                                                                                                                                    |          8 |     21,877 |         11 |          6 |     21,894 |
-| obj/Debug                                                                                                                              |          4 |     20,537 |         11 |          6 |     20,554 |
-| obj/Debug/netcoreapp3.1                                                                                                                |          4 |     20,537 |         11 |          6 |     20,554 |
-| obj/Debug/netcoreapp3.1/staticwebassets                                                                                                |          1 |          1 |          0 |          0 |          1 |
-+----------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
++------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                                     | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                        |         57 |     48,186 |        507 |        174 |     48,867 |
+| Controllers                                                                                                                              |          4 |        204 |         23 |         36 |        263 |
+| Crawler                                                                                                                                  |          4 |        826 |        432 |         48 |      1,306 |
+| Models                                                                                                                                   |          6 |         90 |          0 |         20 |        110 |
+| ORM                                                                                                                                      |          1 |         13 |          0 |          4 |         17 |
+| Properties                                                                                                                               |          1 |         30 |          0 |          1 |         31 |
+| ToolClass                                                                                                                                |          3 |         41 |          1 |          4 |         46 |
+| bin                                                                                                                                      |         21 |     20,882 |          2 |         18 |     20,902 |
+| bin/Debug                                                                                                                                |         10 |     10,182 |          0 |          5 |     10,187 |
+| bin/Debug/netcoreapp3.1                                                                                                                  |         10 |     10,182 |          0 |          5 |     10,187 |
+| bin/Debug/netcoreapp3.1/Properties                                                                                                       |          1 |         30 |          0 |          1 |         31 |
+| bin/Debug/netcoreapp3.1/publish                                                                                                          |          4 |      5,072 |          0 |          2 |      5,074 |
+| bin/Release                                                                                                                              |         11 |     10,700 |          2 |         13 |     10,715 |
+| bin/Release/netcoreapp3.1                                                                                                                |         11 |     10,700 |          2 |         13 |     10,715 |
+| bin/Release/netcoreapp3.1/Properties                                                                                                     |          1 |         30 |          0 |          1 |         31 |
+| bin/Release/netcoreapp3.1/publish                                                                                                        |          5 |      5,590 |          2 |         10 |      5,602 |
+| bin/Release/netcoreapp3.1/publish/Crawler                                                                                                |          1 |        518 |          2 |          8 |        528 |
+| obj                                                                                                                                      |         12 |     25,975 |         38 |         21 |     26,034 |
+| obj/Debug                                                                                                                                |          5 |     20,631 |         20 |         11 |     20,662 |
+| obj/Debug/netcoreapp3.1                                                                                                                  |          5 |     20,631 |         20 |         11 |     20,662 |
+| obj/Debug/netcoreapp3.1/staticwebassets                                                                                                  |          1 |          1 |          0 |          0 |          1 |
+| obj/Release                                                                                                                              |          3 |         14 |         18 |         10 |         42 |
+| obj/Release/netcoreapp3.1                                                                                                                |          3 |         14 |         18 |         10 |         42 |
+| obj/Release/netcoreapp3.1/staticwebassets                                                                                                |          1 |          1 |          0 |          0 |          1 |
++------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
 
 Files
-+----------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
-| filename                                                                                                                               | language | code       | comment    | blank      | total      |
-+----------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/AuthenticateController.cs                                           | C#       |         42 |          4 |          9 |         55 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/CourseTableController.cs                                            | C#       |         35 |          2 |          7 |         44 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/NewsController.cs                                                   | C#       |         24 |          1 |          4 |         29 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/LuoJiaCampus_Server.csproj                                                      | XML      |         11 |          0 |          5 |         16 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Models/Comment.cs                                                               | C#       |         16 |          0 |          4 |         20 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Models/MyDBContext.cs                                                           | C#       |         13 |          0 |          4 |         17 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Models/News.cs                                                                  | C#       |         17 |          0 |          4 |         21 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Models/User.cs                                                                  | C#       |         20 |          0 |          2 |         22 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Program.cs                                                                      | C#       |         24 |          0 |          3 |         27 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Properties/launchSettings.json                                                  | JSON     |         30 |          0 |          1 |         31 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Startup.cs                                                                      | C#       |         60 |          6 |         14 |         80 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/WeatherForecast.cs                                                              | C#       |         11 |          0 |          5 |         16 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/appsettings.Development.json                                                    | JSON     |          9 |          0 |          1 |         10 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/appsettings.json                                                                | JSON     |         13 |          0 |          1 |         14 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/LuoJiaCampus_Server.deps.json                           | JSON     |      3,913 |          0 |          0 |      3,913 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/LuoJiaCampus_Server.runtimeconfig.dev.json              | JSON     |          8 |          0 |          0 |          8 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/LuoJiaCampus_Server.runtimeconfig.json                  | JSON     |         12 |          0 |          0 |         12 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/Properties/launchSettings.json                          | JSON     |         30 |          0 |          1 |         31 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/appsettings.Development.json                            | JSON     |          9 |          0 |          1 |         10 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/appsettings.json                                        | JSON     |         13 |          0 |          1 |         14 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/Debug/netcoreapp3.1/.NETCoreApp,Version=v3.1.AssemblyAttributes.cs          | C#       |          3 |          1 |          1 |          5 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/Debug/netcoreapp3.1/LuoJiaCampus_Server.AssemblyInfo.cs                     | C#       |          9 |         10 |          5 |         24 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/Debug/netcoreapp3.1/project.razor.json                                      | JSON     |     20,524 |          0 |          0 |     20,524 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/Debug/netcoreapp3.1/staticwebassets/LuoJiaCampus_Server.StaticWebAssets.xml | XML      |          1 |          0 |          0 |          1 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/LuoJiaCampus_Server.csproj.nuget.dgspec.json                                | JSON     |         79 |          0 |          0 |         79 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/LuoJiaCampus_Server.csproj.nuget.g.props                                    | XML      |         15 |          0 |          0 |         15 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/LuoJiaCampus_Server.csproj.nuget.g.targets                                  | XML      |          6 |          0 |          0 |          6 |
-| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/project.assets.json                                                         | JSON     |      1,240 |          0 |          0 |      1,240 |
-| Total                                                                                                                                  |          |     26,187 |         24 |         73 |     26,284 |
-+----------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
++------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                                                 | language   | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/AuthenticateController.cs                                             | C#         |         80 |         14 |         18 |        112 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/CourseTableController.cs                                              | C#         |         61 |          5 |         12 |         78 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/NewsController.cs                                                     | C#         |         25 |          1 |          3 |         29 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/UserInfoController.cs                                                 | C#         |         38 |          3 |          3 |         44 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Crawler/CourseTableCrawler.cs                                                     | C#         |         74 |         53 |          9 |        136 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Crawler/JwCrawler.cs                                                              | C#         |        188 |        329 |         26 |        543 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Crawler/StudentInfoCrawler.cs                                                     | C#         |         46 |         48 |          5 |         99 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Crawler/encrypt.js                                                                | JavaScript |        518 |          2 |          8 |        528 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/LuoJiaCampus_Server.csproj                                                        | XML        |         16 |          0 |          5 |         21 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Models/Comment.cs                                                                 | C#         |         17 |          0 |          4 |         21 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Models/Course.cs                                                                  | C#         |         14 |          0 |          6 |         20 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Models/CourseScore.cs                                                             | C#         |         12 |          0 |          1 |         13 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Models/News.cs                                                                    | C#         |         20 |          0 |          4 |         24 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Models/ScoreForm.cs                                                               | C#         |          8 |          0 |          5 |         13 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Models/User.cs                                                                    | C#         |         19 |          0 |          0 |         19 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/ORM/ServerDBContext.cs                                                            | C#         |         13 |          0 |          4 |         17 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Program.cs                                                                        | C#         |         24 |          0 |          3 |         27 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Properties/launchSettings.json                                                    | JSON       |         30 |          0 |          1 |         31 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Startup.cs                                                                        | C#         |         63 |         11 |         12 |         86 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/ToolClass/Constants.cs                                                            | C#         |          5 |          0 |          0 |          5 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/ToolClass/DecodeJwt.cs                                                            | C#         |         19 |          1 |          2 |         22 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/ToolClass/encryptPwd.cs                                                           | C#         |         17 |          0 |          2 |         19 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/appsettings.Development.json                                                      | JSON       |          9 |          0 |          1 |         10 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/appsettings.json                                                                  | JSON       |         13 |          0 |          1 |         14 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/LuoJiaCampus_Server.deps.json                             | JSON       |      5,038 |          0 |          0 |      5,038 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/LuoJiaCampus_Server.runtimeconfig.dev.json                | JSON       |          8 |          0 |          0 |          8 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/LuoJiaCampus_Server.runtimeconfig.json                    | JSON       |         12 |          0 |          0 |         12 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/Properties/launchSettings.json                            | JSON       |         30 |          0 |          1 |         31 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/appsettings.Development.json                              | JSON       |          9 |          0 |          1 |         10 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/appsettings.json                                          | JSON       |         13 |          0 |          1 |         14 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/publish/LuoJiaCampus_Server.deps.json                     | JSON       |      5,038 |          0 |          0 |      5,038 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/publish/LuoJiaCampus_Server.runtimeconfig.json            | JSON       |         12 |          0 |          0 |         12 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/publish/appsettings.Development.json                      | JSON       |          9 |          0 |          1 |         10 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Debug/netcoreapp3.1/publish/appsettings.json                                  | JSON       |         13 |          0 |          1 |         14 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Release/netcoreapp3.1/LuoJiaCampus_Server.deps.json                           | JSON       |      5,038 |          0 |          0 |      5,038 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Release/netcoreapp3.1/LuoJiaCampus_Server.runtimeconfig.dev.json              | JSON       |          8 |          0 |          0 |          8 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Release/netcoreapp3.1/LuoJiaCampus_Server.runtimeconfig.json                  | JSON       |         12 |          0 |          0 |         12 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Release/netcoreapp3.1/Properties/launchSettings.json                          | JSON       |         30 |          0 |          1 |         31 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Release/netcoreapp3.1/appsettings.Development.json                            | JSON       |          9 |          0 |          1 |         10 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Release/netcoreapp3.1/appsettings.json                                        | JSON       |         13 |          0 |          1 |         14 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Release/netcoreapp3.1/publish/Crawler/encrypt.js                              | JavaScript |        518 |          2 |          8 |        528 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Release/netcoreapp3.1/publish/LuoJiaCampus_Server.deps.json                   | JSON       |      5,038 |          0 |          0 |      5,038 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Release/netcoreapp3.1/publish/LuoJiaCampus_Server.runtimeconfig.json          | JSON       |         12 |          0 |          0 |         12 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Release/netcoreapp3.1/publish/appsettings.Development.json                    | JSON       |          9 |          0 |          1 |         10 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/bin/Release/netcoreapp3.1/publish/appsettings.json                                | JSON       |         13 |          0 |          1 |         14 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/Debug/netcoreapp3.1/.NETCoreApp,Version=v3.1.AssemblyAttributes.cs            | C#         |          3 |          1 |          1 |          5 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/Debug/netcoreapp3.1/LuoJiaCampus_Server.AssemblyInfo.cs                       | C#         |          9 |         10 |          5 |         24 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/Debug/netcoreapp3.1/LuoJiaCampus_Server.MvcApplicationPartsAssemblyInfo.cs    | C#         |          4 |          9 |          5 |         18 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/Debug/netcoreapp3.1/project.razor.json                                        | JSON       |     20,614 |          0 |          0 |     20,614 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/Debug/netcoreapp3.1/staticwebassets/LuoJiaCampus_Server.StaticWebAssets.xml   | XML        |          1 |          0 |          0 |          1 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/LuoJiaCampus_Server.csproj.nuget.dgspec.json                                  | JSON       |         99 |          0 |          0 |         99 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/LuoJiaCampus_Server.csproj.nuget.g.props                                      | XML        |         15 |          0 |          0 |         15 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/LuoJiaCampus_Server.csproj.nuget.g.targets                                    | XML        |          6 |          0 |          0 |          6 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/Release/netcoreapp3.1/LuoJiaCampus_Server.AssemblyInfo.cs                     | C#         |          9 |          9 |          5 |         23 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/Release/netcoreapp3.1/LuoJiaCampus_Server.MvcApplicationPartsAssemblyInfo.cs  | C#         |          4 |          9 |          5 |         18 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/Release/netcoreapp3.1/staticwebassets/LuoJiaCampus_Server.StaticWebAssets.xml | XML        |          1 |          0 |          0 |          1 |
+| /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/project.assets.json                                                           | JSON       |      5,210 |          0 |          0 |      5,210 |
+| Total                                                                                                                                    |            |     48,186 |        507 |        174 |     48,867 |
++------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
