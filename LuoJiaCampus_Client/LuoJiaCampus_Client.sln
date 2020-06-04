@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.1022
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuoJiaCampus_Client", "LuoJiaCampus_Client\LuoJiaCampus_Client.csproj", "{5143A7EA-5453-4C75-8003-B86D2D889B4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gradeclass", "gradeclass\gradeclass.csproj", "{F608CE5C-9BB6-4E38-8375-0FD3FBF38492}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5143A7EA-5453-4C75-8003-B86D2D889B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5143A7EA-5453-4C75-8003-B86D2D889B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5143A7EA-5453-4C75-8003-B86D2D889B4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F608CE5C-9BB6-4E38-8375-0FD3FBF38492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F608CE5C-9BB6-4E38-8375-0FD3FBF38492}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F608CE5C-9BB6-4E38-8375-0FD3FBF38492}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F608CE5C-9BB6-4E38-8375-0FD3FBF38492}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

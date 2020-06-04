@@ -15,7 +15,7 @@ namespace STUDENTINFO
 {
     public partial class MainFrm : Form
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
         public String sname { get; set; }
         public String sno { get; set; }
         public String scollege { get; set; }
@@ -44,7 +44,7 @@ namespace STUDENTINFO
             collegebox.DataBindings.Add("Text", this, "scollege");
             picture.DataBindings.Add("Image", this, "bitmap");
         }
-        public MainFrm(int ID) : this()
+        public MainFrm(long ID) : this()
         {
             Get_info(ID);
         }
@@ -55,7 +55,7 @@ namespace STUDENTINFO
             public static Color color3 = Color.FromArgb(24, 165,251);
         }
         //连接数据库获取当前学生姓名、学号、学院、头像
-        private void Get_info(int ID)
+        private void Get_info(long ID)
         {
 
         }
@@ -112,10 +112,15 @@ namespace STUDENTINFO
 
         }
 
+        private void picture_Click(object sender, EventArgs e)
+        {
+            DisiableButton();
+            Openchildform(new Form());
+        }
         private void courceButton_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBcolors.color1);
-            //open course form
+            //课程表
             Openchildform(new Form());
         }
 
@@ -148,5 +153,7 @@ namespace STUDENTINFO
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+
+
     }
 }
