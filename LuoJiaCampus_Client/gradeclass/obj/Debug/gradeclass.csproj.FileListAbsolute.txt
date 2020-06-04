@@ -16,3 +16,11 @@ C:\Users\jiang'hai'lan\LuoJiaCampus\LuoJiaCampus_Client\gradeclass\obj\Debug\gra
 C:\Users\jiang'hai'lan\LuoJiaCampus\LuoJiaCampus_Client\gradeclass\obj\Debug\gradeclass.csproj.CopyComplete
 C:\Users\jiang'hai'lan\LuoJiaCampus\LuoJiaCampus_Client\gradeclass\obj\Debug\gradeclass.exe
 C:\Users\jiang'hai'lan\LuoJiaCampus\LuoJiaCampus_Client\gradeclass\obj\Debug\gradeclass.pdb
+C:\Users\Lenovo\learngit\LuoJiaCampus_Client\gradeclass\bin\Debug\gradeclass.exe.config
+C:\Users\Lenovo\learngit\LuoJiaCampus_Client\gradeclass\bin\Debug\gradeclass.exe
+C:\Users\Lenovo\learngit\LuoJiaCampus_Client\gradeclass\bin\Debug\gradeclass.pdb
+C:\Users\Lenovo\learngit\LuoJiaCampus_Client\gradeclass\obj\Debug\gradeclass.csprojAssemblyReference.cache
+C:\Users\Lenovo\learngit\LuoJiaCampus_Client\gradeclass\obj\Debug\gradeclass.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\learngit\LuoJiaCampus_Client\gradeclass\obj\Debug\gradeclass.csproj.CopyComplete
+C:\Users\Lenovo\learngit\LuoJiaCampus_Client\gradeclass\obj\Debug\gradeclass.exe
+C:\Users\Lenovo\learngit\LuoJiaCampus_Client\gradeclass\obj\Debug\gradeclass.pdb

@@ -121,7 +121,7 @@ namespace STUDENTINFO
         {
             ActivateButton(sender, RGBcolors.color1);
             //课程表
-            Openchildform(new Form());
+            Openchildform(new CourseList());
         }
 
         private void wordButton_Click(object sender, EventArgs e)

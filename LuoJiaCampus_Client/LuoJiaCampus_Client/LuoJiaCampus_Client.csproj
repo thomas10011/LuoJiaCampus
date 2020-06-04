@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CourseList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CourseList.Designer.cs">
+      <DependentUpon>CourseList.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoadForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     <Compile Include="ToolboxForm.Designer.cs">
       <DependentUpon>ToolboxForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CourseList.resx">
+      <DependentUpon>CourseList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoadForm.resx">
       <DependentUpon>LoadForm.cs</DependentUpon>
     </EmbeddedResource>
