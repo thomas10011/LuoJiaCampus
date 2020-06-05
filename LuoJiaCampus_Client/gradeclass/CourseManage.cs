@@ -18,8 +18,8 @@ namespace gradeclass
         public CourseManage()
         {
             DSConnection();
-            lists = transtable(DSCommand("SELECT * FROM `coursetable` WHERE `userid` = '2018302110245' "));//test
-        }
+            lists = transtable(DSCommand("SELECT `courseNum`,`courseName`,`courseType`,`learnType`,`school`,`teacherName`,`major`,`credits`,`learnTime`,`courseTime` FROM `coursetable` WHERE `userid` = '2018302110245'"));//test
+        }//
         //连接数据库
         public void DSConnection()
         {
