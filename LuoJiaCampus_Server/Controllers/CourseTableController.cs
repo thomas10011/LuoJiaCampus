@@ -26,8 +26,8 @@ namespace LuoJiaCampus_Server.Controllers {
         }
         
         [HttpGet]
-        public ActionResult<List<Course>> GetNews() {
-            Console.WriteLine("get request");
+        public ActionResult<List<Course>> getCoursTable() {
+            Console.WriteLine("getting CourseTable");
             JwCrawler.initAttributes();
 
             // 得到当前的http请求

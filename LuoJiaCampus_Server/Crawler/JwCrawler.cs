@@ -196,6 +196,9 @@ namespace LuoJiaCampus_Server.jw_Crawler {
                 Console.WriteLine();
             }
             Console.WriteLine();
+
+
+            
             /*-----------------------------------下面准备转到教务系统----------------------------------*/
 
             client.DefaultRequestHeaders.Clear();           // 准备重新构造请求头
