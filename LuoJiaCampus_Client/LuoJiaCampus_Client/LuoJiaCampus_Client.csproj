@@ -36,7 +36,11 @@
     <Reference Include="FontAwesome.Sharp, Version=5.12.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.5.12.1\lib\net45\FontAwesome.Sharp.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommentForm.Designer.cs">
+      <DependentUpon>CommentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CourseList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,14 +83,36 @@
     <Compile Include="MainFrm.Designer.cs">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="News.cs" />
+    <Compile Include="NoveltyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NoveltyForm.Designer.cs">
+      <DependentUpon>NoveltyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecordForm.Designer.cs">
+      <DependentUpon>RecordForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolboxForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ToolboxForm.Designer.cs">
       <DependentUpon>ToolboxForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WordForm.Designer.cs">
+      <DependentUpon>WordForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CommentForm.resx">
+      <DependentUpon>CommentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CourseList.resx">
       <DependentUpon>CourseList.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +125,9 @@
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NoveltyForm.resx">
+      <DependentUpon>NoveltyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -102,8 +137,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RecordForm.resx">
+      <DependentUpon>RecordForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToolboxForm.resx">
       <DependentUpon>ToolboxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WordForm.resx">
+      <DependentUpon>WordForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

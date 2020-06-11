@@ -34,7 +34,6 @@ namespace STUDENTINFO
 
             //databandings数据绑定
             dataGridView1.DataSource = courseManage.lists;
-            label3.Text = courseManage.lists.Rows.Count.ToString();
         }
     }
 }

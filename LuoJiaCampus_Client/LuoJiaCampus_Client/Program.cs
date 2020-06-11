@@ -16,23 +16,21 @@ namespace STUDENTINFO
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Login());
             LoadForm login = new LoadForm();
 
             //界面转换
             login.ShowDialog();
 
             if (login.DialogResult == DialogResult.OK)
-            {            
-                Application.Run(new MainFrm());//login.ID
+            {
+                Application.Run(new MainFrm(login.ID));
                 login.Dispose();
-            }
+        }
             else if (login.DialogResult == DialogResult.Cancel)
             {
                 login.Dispose();
                 return;
             }
-
         }
     }
 }

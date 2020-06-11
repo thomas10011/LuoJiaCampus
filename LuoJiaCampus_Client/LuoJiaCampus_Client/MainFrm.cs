@@ -46,6 +46,7 @@ namespace STUDENTINFO
         }
         public MainFrm(long ID) : this()
         {
+            sno = ID.ToString();
             Get_info(ID);
         }
         private struct RGBcolors
@@ -128,7 +129,7 @@ namespace STUDENTINFO
         {
             ActivateButton(sender, RGBcolors.color2);
             //新鲜事
-            Openchildform(new Form());
+            Openchildform(new NoveltyForm());
         }
 
         private void toolButton_Click(object sender, EventArgs e)

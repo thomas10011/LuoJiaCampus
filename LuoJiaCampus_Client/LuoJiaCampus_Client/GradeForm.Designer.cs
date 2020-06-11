@@ -28,21 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.yearcomboBox = new System.Windows.Forms.ComboBox();
-            this.courseTcomboBox = new System.Windows.Forms.ComboBox();
-            this.termcomboBox = new System.Windows.Forms.ComboBox();
-            this.yearlabel = new System.Windows.Forms.Label();
-            this.courseTlabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.averStextBox = new System.Windows.Forms.TextBox();
-            this.averPtextBox = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.课程 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.课程类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.教师名 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +43,19 @@
             this.课头号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.学号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.计算 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.yearcomboBox = new System.Windows.Forms.ComboBox();
+            this.courseTcomboBox = new System.Windows.Forms.ComboBox();
+            this.termcomboBox = new System.Windows.Forms.ComboBox();
+            this.yearlabel = new System.Windows.Forms.Label();
+            this.courseTlabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.averStextBox = new System.Windows.Forms.TextBox();
+            this.averPtextBox = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -82,14 +82,14 @@
             this.课头号,
             this.学号,
             this.计算});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("造字工房悦圆演示版常规体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("造字工房悦圆演示版常规体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.GridColor = System.Drawing.Color.LightGray;
             this.dataGridView1.Location = new System.Drawing.Point(0, 88);
             this.dataGridView1.Name = "dataGridView1";
@@ -97,6 +97,90 @@
             this.dataGridView1.Size = new System.Drawing.Size(944, 380);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // 课程
+            // 
+            this.课程.DataPropertyName = "课程名";
+            this.课程.HeaderText = "课程";
+            this.课程.Name = "课程";
+            this.课程.Width = 200;
+            // 
+            // 课程类型
+            // 
+            this.课程类型.DataPropertyName = "课程类型";
+            this.课程类型.HeaderText = "课程类型";
+            this.课程类型.Name = "课程类型";
+            this.课程类型.Width = 150;
+            // 
+            // 教师名
+            // 
+            this.教师名.DataPropertyName = "教师名";
+            this.教师名.HeaderText = "教师名";
+            this.教师名.Name = "教师名";
+            // 
+            // 授课学院
+            // 
+            this.授课学院.DataPropertyName = "授课学院";
+            this.授课学院.HeaderText = "授课学院";
+            this.授课学院.Name = "授课学院";
+            this.授课学院.Width = 200;
+            // 
+            // 学分
+            // 
+            this.学分.DataPropertyName = "学分";
+            this.学分.HeaderText = "学分";
+            this.学分.Name = "学分";
+            // 
+            // 学年
+            // 
+            this.学年.DataPropertyName = "学年";
+            this.学年.HeaderText = "学年";
+            this.学年.Name = "学年";
+            // 
+            // 学期
+            // 
+            this.学期.DataPropertyName = "学期";
+            this.学期.HeaderText = "学期";
+            this.学期.Name = "学期";
+            // 
+            // 学习类型
+            // 
+            this.学习类型.DataPropertyName = "学习类型";
+            this.学习类型.HeaderText = "学习类型";
+            this.学习类型.Name = "学习类型";
+            this.学习类型.Width = 150;
+            // 
+            // 成绩
+            // 
+            this.成绩.DataPropertyName = "成绩";
+            this.成绩.HeaderText = "成绩";
+            this.成绩.Name = "成绩";
+            // 
+            // 绩点
+            // 
+            this.绩点.DataPropertyName = "绩点";
+            this.绩点.HeaderText = "绩点";
+            this.绩点.Name = "绩点";
+            // 
+            // 课头号
+            // 
+            this.课头号.DataPropertyName = "课头号";
+            this.课头号.HeaderText = "课头号";
+            this.课头号.Name = "课头号";
+            this.课头号.Visible = false;
+            // 
+            // 学号
+            // 
+            this.学号.DataPropertyName = "学号";
+            this.学号.HeaderText = "学号";
+            this.学号.Name = "学号";
+            this.学号.Visible = false;
+            // 
+            // 计算
+            // 
+            this.计算.HeaderText = "计算";
+            this.计算.Name = "计算";
+            this.计算.ReadOnly = true;
             // 
             // yearcomboBox
             // 
@@ -111,9 +195,9 @@
             "2018",
             "2019",
             "2020"});
-            this.yearcomboBox.Location = new System.Drawing.Point(130, 31);
+            this.yearcomboBox.Location = new System.Drawing.Point(150, 31);
             this.yearcomboBox.Name = "yearcomboBox";
-            this.yearcomboBox.Size = new System.Drawing.Size(121, 23);
+            this.yearcomboBox.Size = new System.Drawing.Size(101, 23);
             this.yearcomboBox.TabIndex = 1;
             // 
             // courseTcomboBox
@@ -160,7 +244,7 @@
             this.yearlabel.AutoSize = true;
             this.yearlabel.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.yearlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(72)))), ((int)(((byte)(157)))));
-            this.yearlabel.Location = new System.Drawing.Point(87, 34);
+            this.yearlabel.Location = new System.Drawing.Point(50, 34);
             this.yearlabel.Name = "yearlabel";
             this.yearlabel.Size = new System.Drawing.Size(39, 15);
             this.yearlabel.TabIndex = 4;
@@ -279,90 +363,6 @@
             this.button2.Text = "计算";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // 课程
-            // 
-            this.课程.DataPropertyName = "课程名";
-            this.课程.HeaderText = "课程";
-            this.课程.Name = "课程";
-            this.课程.Width = 200;
-            // 
-            // 课程类型
-            // 
-            this.课程类型.DataPropertyName = "课程类型";
-            this.课程类型.HeaderText = "课程类型";
-            this.课程类型.Name = "课程类型";
-            this.课程类型.Width = 150;
-            // 
-            // 教师名
-            // 
-            this.教师名.DataPropertyName = "教师名";
-            this.教师名.HeaderText = "教师名";
-            this.教师名.Name = "教师名";
-            // 
-            // 授课学院
-            // 
-            this.授课学院.DataPropertyName = "授课学院";
-            this.授课学院.HeaderText = "授课学院";
-            this.授课学院.Name = "授课学院";
-            this.授课学院.Width = 200;
-            // 
-            // 学分
-            // 
-            this.学分.DataPropertyName = "学分";
-            this.学分.HeaderText = "学分";
-            this.学分.Name = "学分";
-            // 
-            // 学年
-            // 
-            this.学年.DataPropertyName = "学年";
-            this.学年.HeaderText = "学年";
-            this.学年.Name = "学年";
-            // 
-            // 学期
-            // 
-            this.学期.DataPropertyName = "学期";
-            this.学期.HeaderText = "学期";
-            this.学期.Name = "学期";
-            // 
-            // 学习类型
-            // 
-            this.学习类型.DataPropertyName = "学习类型";
-            this.学习类型.HeaderText = "学习类型";
-            this.学习类型.Name = "学习类型";
-            this.学习类型.Width = 150;
-            // 
-            // 成绩
-            // 
-            this.成绩.DataPropertyName = "成绩";
-            this.成绩.HeaderText = "成绩";
-            this.成绩.Name = "成绩";
-            // 
-            // 绩点
-            // 
-            this.绩点.DataPropertyName = "绩点";
-            this.绩点.HeaderText = "绩点";
-            this.绩点.Name = "绩点";
-            // 
-            // 课头号
-            // 
-            this.课头号.DataPropertyName = "课头号";
-            this.课头号.HeaderText = "课头号";
-            this.课头号.Name = "课头号";
-            this.课头号.Visible = false;
-            // 
-            // 学号
-            // 
-            this.学号.DataPropertyName = "学号";
-            this.学号.HeaderText = "学号";
-            this.学号.Name = "学号";
-            this.学号.Visible = false;
-            // 
-            // 计算
-            // 
-            this.计算.HeaderText = "计算";
-            this.计算.Name = "计算";
-            this.计算.ReadOnly = true;
             // 
             // GradeForm
             // 
