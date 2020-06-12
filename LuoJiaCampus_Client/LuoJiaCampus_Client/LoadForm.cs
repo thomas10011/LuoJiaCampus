@@ -63,5 +63,10 @@ namespace STUDENTINFO
                 this.Close();
             }
         }
+
+        private void LoadForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

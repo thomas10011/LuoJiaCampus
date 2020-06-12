@@ -35,5 +35,10 @@ namespace STUDENTINFO
             //databandings数据绑定
             dataGridView1.DataSource = courseManage.lists;
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

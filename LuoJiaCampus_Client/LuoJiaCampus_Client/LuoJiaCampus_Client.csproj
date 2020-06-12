@@ -104,6 +104,12 @@
     <Compile Include="ToolboxForm.Designer.cs">
       <DependentUpon>ToolboxForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserForm.Designer.cs">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WordForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
     <EmbeddedResource Include="ToolboxForm.resx">
       <DependentUpon>ToolboxForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserForm.resx">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WordForm.resx">
       <DependentUpon>WordForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +174,10 @@
       <Project>{f608ce5c-9bb6-4e38-8375-0fd3fbf38492}</Project>
       <Name>gradeclass</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\timg %283%29.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -41,8 +41,9 @@
             this.panel1.Controls.Add(this.yearlabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 77);
+            this.panel1.Size = new System.Drawing.Size(1200, 116);
             this.panel1.TabIndex = 0;
             // 
             // yearlabel
@@ -51,10 +52,9 @@
             this.yearlabel.AutoSize = true;
             this.yearlabel.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.yearlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(72)))), ((int)(((byte)(157)))));
-            this.yearlabel.Location = new System.Drawing.Point(329, 34);
-            this.yearlabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.yearlabel.Location = new System.Drawing.Point(494, 51);
             this.yearlabel.Name = "yearlabel";
-            this.yearlabel.Size = new System.Drawing.Size(93, 20);
+            this.yearlabel.Size = new System.Drawing.Size(137, 30);
             this.yearlabel.TabIndex = 5;
             this.yearlabel.Text = "详细课表";
             // 
@@ -67,11 +67,14 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.GridColor = System.Drawing.Color.LightGray;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 73);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 110);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(800, 342);
+            this.dataGridView1.Size = new System.Drawing.Size(1200, 513);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label3
             // 
@@ -79,22 +82,22 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(72)))), ((int)(((byte)(157)))));
-            this.label3.Location = new System.Drawing.Point(380, 429);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(570, 644);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 12);
+            this.label3.Size = new System.Drawing.Size(94, 18);
             this.label3.TabIndex = 7;
             this.label3.Text = "共x条记录";
             // 
             // CourseList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1200, 675);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CourseList";
             this.Text = "CourseList";
             this.panel1.ResumeLayout(false);

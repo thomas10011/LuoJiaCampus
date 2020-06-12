@@ -53,5 +53,10 @@ namespace STUDENTINFO
         {
             MessageBox.Show("此功能待开发");
         }
+
+        private void ToolboxForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

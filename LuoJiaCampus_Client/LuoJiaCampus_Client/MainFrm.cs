@@ -115,8 +115,8 @@ namespace STUDENTINFO
 
         private void picture_Click(object sender, EventArgs e)
         {
-            DisiableButton();
-            Openchildform(new Form());
+            //个人信息
+            Openchildform(new UserForm());
         }
         private void courceButton_Click(object sender, EventArgs e)
         {
@@ -155,6 +155,9 @@ namespace STUDENTINFO
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
+        private void childformdesk_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
     }
 }

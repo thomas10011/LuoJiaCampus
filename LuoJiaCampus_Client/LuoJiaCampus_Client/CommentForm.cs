@@ -76,5 +76,10 @@ namespace STUDENTINFO
         {
             Openchildform(new NoveltyForm());
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

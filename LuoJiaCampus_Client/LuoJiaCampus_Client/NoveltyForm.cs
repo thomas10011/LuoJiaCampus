@@ -305,5 +305,10 @@ namespace STUDENTINFO
         {
             Openchildform(new WordForm(Word, 1));
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
