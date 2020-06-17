@@ -46,6 +46,7 @@ namespace STUDENTINFO
         }
         public MainFrm(long ID) : this()
         {
+            sno = ID.ToString();
             Get_info(ID);
         }
         private struct RGBcolors
@@ -114,8 +115,8 @@ namespace STUDENTINFO
 
         private void picture_Click(object sender, EventArgs e)
         {
-            DisiableButton();
-            Openchildform(new Form());
+            //个人信息
+            Openchildform(new UserForm());
         }
         private void courceButton_Click(object sender, EventArgs e)
         {
@@ -128,7 +129,7 @@ namespace STUDENTINFO
         {
             ActivateButton(sender, RGBcolors.color2);
             //新鲜事
-            Openchildform(new Form());
+            Openchildform(new NoveltyForm());
         }
 
         private void toolButton_Click(object sender, EventArgs e)
@@ -154,6 +155,9 @@ namespace STUDENTINFO
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
+        private void childformdesk_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
     }
 }

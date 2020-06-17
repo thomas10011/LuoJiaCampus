@@ -18,12 +18,12 @@ namespace gradeclass
         public CourseManage()
         {
             DSConnection();
-            lists = transtable(DSCommand("SELECT `courseNum`,`courseName`,`courseType`,`learnType`,`school`,`teacherName`,`major`,`credits`,`learnTime`,`courseTime` FROM `coursetable` WHERE `userid` = '2018302110245'"));//test
-        }//
+            lists = transtable(DSCommand("SELECT * FROM `course` WHERE `学号` = '2018302110253' "));//test
+        }
         //连接数据库
         public void DSConnection()
         {
-            string connStr = "server=localhost;port=3306;user=root;password=121212; database=luojiacampus_client;";
+            string connStr = "server=localhost;port=3306;user=root;password=jhl794613285; database=luojiacampus_client;";
             conn = new MySqlConnection(connStr);
         }
         public MySqlDataAdapter DSCommand(string a)
