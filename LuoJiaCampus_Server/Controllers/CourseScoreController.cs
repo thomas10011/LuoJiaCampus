@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using LuoJiaCampus_Server.Models;
 using Microsoft.AspNetCore.NodeServices;
 using System;
-using LuoJiaCampus_Server.jw_Crawler;
+using LuoJiaCampus_Server.Crawler;
 using System.Threading.Tasks;
 using System.Linq;
 using LuoJiaCampus_Server.ToolClasses;
@@ -45,7 +45,7 @@ namespace LuoJiaCampus_Server.Controllers {
             // 调用爬虫
             JwCrawler.initAttributes();
             JwCrawler.login(query.id, getPwdEncrypted(query.portalpwd, JwCrawler.dynamicPwdEncryptSalt).Result);
-
+            JwCrawler.loginJw();
             List<CourseScore> score = CourseScoreCrawler.crawlCourseScore(Convert.ToInt64(token_id));
             JwCrawler.logout();
             return score;

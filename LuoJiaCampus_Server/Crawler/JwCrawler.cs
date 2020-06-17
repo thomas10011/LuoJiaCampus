@@ -1,11 +1,6 @@
-using System.Security.Claims;
+
 using System.Text.RegularExpressions;
-using System.ComponentModel;
-using System.Net.WebSockets;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
 using System.Text;
-using System.Reflection.Metadata;
 using System.Net;
 using System;
 using System.Net.Http;
@@ -13,13 +8,12 @@ using AngleSharp.Html.Parser;
 using System.Linq;
 using System.Collections.Generic;
 using HtmlAgilityPack;
-using System.Threading.Tasks;
 using System.IO;
 
-namespace LuoJiaCampus_Server.jw_Crawler {
+namespace LuoJiaCampus_Server.Crawler {
     
     public class JwCrawler {
-        public static string loginPage = @"https://cas.whu.edu.cn/authserver/login?service=http%3A%2F%2Fehall.whu.edu.cn%2Flogin%3Fservice%3Dhttp%3A%2F%2Fehall.whu.edu.cn%2Fnew%2Findex.html";
+        public static string loginPage = @"https://cas.whu.edu.cn/authserver/login?service=http%3A%2F%2Fehall.whu.edu.cn%2Flogin%3Fservice%3Dhttp%3A%2F%2Fehall.whu.edu.cn%2Fnew%2Findex.html%3Fbrowser%3Dno";
         public static string cas2jwPage = @"https://cas.whu.edu.cn/authserver/login?service=http%3A%2F%2Fbkjw.whu.edu.cn%2Fcommon%2Fcaslogin.jsp";
         public static string logoutPage = @"http://cas.whu.edu.cn/authserver/logout?service=http://ehall.whu.edu.cn/new/index.html";
         // public static string
@@ -180,8 +174,11 @@ namespace LuoJiaCampus_Server.jw_Crawler {
             
             HttpResponseMessage response = client.PostAsync(loginPage, postBody).Result;
             Console.WriteLine($"return status: {response.StatusCode}");
-            if(response.StatusCode != HttpStatusCode.Redirect)
+            // 返回状态不是重定向就登录失败了
+            if(response.StatusCode != HttpStatusCode.Redirect) {
+                Console.WriteLine("Login failed!!!");
                 return false;
+            }
             CookieCollection cookies = handler.CookieContainer.GetCookies(new Uri(loginPage));
             foreach(Cookie c in cookies) {
                 Console.WriteLine(c.ToString());
@@ -199,6 +196,14 @@ namespace LuoJiaCampus_Server.jw_Crawler {
 
 
             
+            
+            
+            return true;
+        }
+        
+
+        public static bool loginJw() {
+
             /*-----------------------------------下面准备转到教务系统----------------------------------*/
 
             client.DefaultRequestHeaders.Clear();           // 准备重新构造请求头
@@ -251,11 +256,11 @@ namespace LuoJiaCampus_Server.jw_Crawler {
                 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
             );
 
-            response = client.GetAsync(cas2jwPage).Result;       // 发出请求
+            HttpResponseMessage response = client.GetAsync(cas2jwPage).Result;       // 发出请求
             Console.WriteLine($"return status: {response.StatusCode}");
             if(response.StatusCode != HttpStatusCode.Redirect)
                 return false;
-            cookies = handler.CookieContainer.GetCookies(new Uri(cas2jwPage));   // 拿到cookie打印看看
+            CookieCollection cookies = handler.CookieContainer.GetCookies(new Uri(cas2jwPage));   // 拿到cookie打印看看
             foreach(Cookie c in cookies) {
                 Console.WriteLine(c.ToString());
                 
@@ -404,7 +409,6 @@ namespace LuoJiaCampus_Server.jw_Crawler {
             cookies = handler.CookieContainer.GetCookies(new Uri(redirect2jw));   // 拿到cookie
             foreach(Cookie c in cookies) {
                 Console.WriteLine(c.ToString());
-                Console.WriteLine(c.Value);
                 
             }
 
@@ -418,10 +422,10 @@ namespace LuoJiaCampus_Server.jw_Crawler {
                 Console.WriteLine();
             }
 
-            var stuIndexHtml = response.Content.ReadAsStreamAsync().Result;
+            var stuIndexHtml = response.Content.ReadAsStringAsync().Result;
             HtmlDocument doc = new HtmlDocument();
             
-            doc.Load(stuIndexHtml);
+            doc.LoadHtml(stuIndexHtml);
             // Console.WriteLine(response.Content.ReadAsStringAsync().Result);   // 打印出来看看
 
             HtmlNode divSystem = doc.DocumentNode.SelectSingleNode("//div[@id='system']");      // 这个节点包含csrftoken
@@ -437,12 +441,10 @@ namespace LuoJiaCampus_Server.jw_Crawler {
 
             // CourseTableCrawler.crawlCourseTable();
             // StudentInfoCrawler.crawlStudentInfo();
-            
+
+
             return true;
         }
-        
-
-
 
 
 

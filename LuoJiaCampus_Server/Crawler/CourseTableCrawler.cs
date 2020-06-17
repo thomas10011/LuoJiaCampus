@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
-namespace LuoJiaCampus_Server.jw_Crawler {
+namespace LuoJiaCampus_Server.Crawler {
     public class CourseTableCrawler {
         public static List<Course> crawlCourseTable () {
             JwCrawler.client.DefaultRequestHeaders.Clear(); 

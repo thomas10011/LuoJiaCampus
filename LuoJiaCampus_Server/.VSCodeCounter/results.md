@@ -1,10 +1,10 @@
 # Summary
 
-Date : 2020-06-03 18:25:17
+Date : 2020-06-05 17:43:17
 
 Directory /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server
 
-Total : 57 files,  48186 codes, 507 comments, 174 blanks, all 48867 lines
+Total : 59 files,  48267 codes, 717 comments, 188 blanks, all 49172 lines
 
 [details](details.md)
 
@@ -13,16 +13,16 @@ Total : 57 files,  48186 codes, 507 comments, 174 blanks, all 48867 lines
 | :--- | ---: | ---: | ---: | ---: | ---: |
 | JSON | 26 | 46,339 | 0 | 13 | 46,352 |
 | JavaScript | 2 | 1,036 | 4 | 16 | 1,056 |
-| C# | 24 | 772 | 503 | 140 | 1,415 |
+| C# | 26 | 853 | 713 | 154 | 1,720 |
 | XML | 5 | 39 | 0 | 5 | 44 |
 
 ## Directories
 | path | files | code | comment | blank | total |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| . | 57 | 48,186 | 507 | 174 | 48,867 |
-| Controllers | 4 | 204 | 23 | 36 | 263 |
-| Crawler | 4 | 826 | 432 | 48 | 1,306 |
-| Models | 6 | 90 | 0 | 20 | 110 |
+| . | 59 | 48,267 | 717 | 188 | 49,172 |
+| Controllers | 5 | 243 | 29 | 43 | 315 |
+| Crawler | 5 | 863 | 636 | 54 | 1,553 |
+| Models | 6 | 95 | 0 | 21 | 116 |
 | ORM | 1 | 13 | 0 | 4 | 17 |
 | Properties | 1 | 30 | 0 | 1 | 31 |
 | ToolClass | 3 | 41 | 1 | 4 | 46 |

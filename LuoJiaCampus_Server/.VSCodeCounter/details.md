@@ -1,28 +1,30 @@
 # Details
 
-Date : 2020-06-03 18:25:17
+Date : 2020-06-05 17:43:17
 
 Directory /Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server
 
-Total : 57 files,  48186 codes, 507 comments, 174 blanks, all 48867 lines
+Total : 59 files,  48267 codes, 717 comments, 188 blanks, all 49172 lines
 
 [summary](results.md)
 
 ## Files
 | filename | language | code | comment | blank | total |
 | :--- | :--- | ---: | ---: | ---: | ---: |
-| [Controllers/AuthenticateController.cs](/Controllers/AuthenticateController.cs) | C# | 80 | 14 | 18 | 112 |
-| [Controllers/CourseTableController.cs](/Controllers/CourseTableController.cs) | C# | 61 | 5 | 12 | 78 |
+| [Controllers/AuthenticateController.cs](/Controllers/AuthenticateController.cs) | C# | 81 | 15 | 19 | 115 |
+| [Controllers/CourseScoreController.cs](/Controllers/CourseScoreController.cs) | C# | 49 | 5 | 8 | 62 |
+| [Controllers/CourseTableController.cs](/Controllers/CourseTableController.cs) | C# | 50 | 5 | 10 | 65 |
 | [Controllers/NewsController.cs](/Controllers/NewsController.cs) | C# | 25 | 1 | 3 | 29 |
 | [Controllers/UserInfoController.cs](/Controllers/UserInfoController.cs) | C# | 38 | 3 | 3 | 44 |
+| [Crawler/CourseScoreCrawler.cs](/Crawler/CourseScoreCrawler.cs) | C# | 15 | 129 | 3 | 147 |
 | [Crawler/CourseTableCrawler.cs](/Crawler/CourseTableCrawler.cs) | C# | 74 | 53 | 9 | 136 |
-| [Crawler/JwCrawler.cs](/Crawler/JwCrawler.cs) | C# | 188 | 329 | 26 | 543 |
+| [Crawler/JwCrawler.cs](/Crawler/JwCrawler.cs) | C# | 210 | 404 | 29 | 643 |
 | [Crawler/StudentInfoCrawler.cs](/Crawler/StudentInfoCrawler.cs) | C# | 46 | 48 | 5 | 99 |
 | [Crawler/encrypt.js](/Crawler/encrypt.js) | JavaScript | 518 | 2 | 8 | 528 |
 | [LuoJiaCampus_Server.csproj](/LuoJiaCampus_Server.csproj) | XML | 16 | 0 | 5 | 21 |
 | [Models/Comment.cs](/Models/Comment.cs) | C# | 17 | 0 | 4 | 21 |
 | [Models/Course.cs](/Models/Course.cs) | C# | 14 | 0 | 6 | 20 |
-| [Models/CourseScore.cs](/Models/CourseScore.cs) | C# | 12 | 0 | 1 | 13 |
+| [Models/CourseScore.cs](/Models/CourseScore.cs) | C# | 17 | 0 | 2 | 19 |
 | [Models/News.cs](/Models/News.cs) | C# | 20 | 0 | 4 | 24 |
 | [Models/ScoreForm.cs](/Models/ScoreForm.cs) | C# | 8 | 0 | 5 | 13 |
 | [Models/User.cs](/Models/User.cs) | C# | 19 | 0 | 0 | 19 |

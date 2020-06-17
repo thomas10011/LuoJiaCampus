@@ -9,7 +9,7 @@ using System.Net.Http;
 
 
 
-namespace LuoJiaCampus_Server.jw_Crawler {
+namespace LuoJiaCampus_Server.Crawler {
     public class CourseScoreCrawler {
         public static List<CourseScore> crawlCourseScore(long userId) {
             JwCrawler.client.DefaultRequestHeaders.Clear();

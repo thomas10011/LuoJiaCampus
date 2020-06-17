@@ -9,7 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.AspNetCore.NodeServices;
-using LuoJiaCampus_Server.jw_Crawler;
+using LuoJiaCampus_Server.Crawler;
 using System.Threading.Tasks;
 using LuoJiaCampus_Server.ToolClasses;
 
@@ -39,7 +39,7 @@ namespace LuoJiaCampus_Server.Controllers {
             catch (Exception e) {
                 return BadRequest(e.InnerException.Message);
             }
-            // 查询不到用户或者密码验证不通过应尝试登录教务系统爬取信息 若无法登录返回错误
+            // 查询不到用户或者密码验证不通过应尝试登录信息门户 若无法登录返回错误
             if(query == null || query.password != user.password || query.portalpwd != user.portalpwd)
             
              {
@@ -49,8 +49,9 @@ namespace LuoJiaCampus_Server.Controllers {
                 if (!result)
                     return BadRequest("wrong password!");
 
-                // 登录成功的话，爬下来个人信息保存到数据库
-                User newUser = StudentInfoCrawler.crawlStudentInfo();
+                // 信息门户登录成功的话，爬下来个人信息保存到数据库
+                JwCrawler.loginJw();    // 登录教务
+                User newUser = StudentInfoCrawler.crawlStudentInfo();   // 爬取个人信息
                 newUser.password = user.password;
                 newUser.portalpwd = user.portalpwd;
                 if (query == null)
