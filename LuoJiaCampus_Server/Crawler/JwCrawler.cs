@@ -29,6 +29,8 @@ namespace LuoJiaCampus_Server.Crawler {
 
         public static string CASTGC = null;                     // 用于请求教务系统的JSESSIONID
         public static string iPlanetDirectoryPro = null;
+        public static string MOD_AUTH_CAS = null;
+        public static string asessionid = null;
         public static string csrftoken = null;
 
         // 静态变量client
@@ -174,6 +176,9 @@ namespace LuoJiaCampus_Server.Crawler {
             
             HttpResponseMessage response = client.PostAsync(loginPage, postBody).Result;
             Console.WriteLine($"return status: {response.StatusCode}");
+
+            client.DefaultRequestHeaders.Clear();
+
             // 返回状态不是重定向就登录失败了
             if(response.StatusCode != HttpStatusCode.Redirect) {
                 Console.WriteLine("Login failed!!!");
@@ -182,7 +187,63 @@ namespace LuoJiaCampus_Server.Crawler {
             CookieCollection cookies = handler.CookieContainer.GetCookies(new Uri(loginPage));
             foreach(Cookie c in cookies) {
                 Console.WriteLine(c.ToString());
+                if(c.ToString().Split("=").First() == "iPlanetDirectoryPro")
+                    iPlanetDirectoryPro = c.ToString();
+                else if(c.ToString().Split("=").First() == "JSESSIONID")
+                    JSESSIONID = c.ToString();
+                else if(c.ToString().Split("=").First() == "route")
+                    route = c.ToString();
+                else if(c.ToString().Split("=").First() == "CASTGC")
+                    CASTGC = c.ToString();
+                
             }
+            
+            // client.DefaultRequestHeaders.Add(
+            //         "Cookie",
+            //         c.ToString() + ";"
+            // );
+            // 重新构建请求头
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "Accept",
+                "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+            );
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "Accept-Encoding",
+                "gzip, deflate"
+            );
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "Accept-Language",
+                "zh-CN,zh;q=0.9,en;q=0.8"
+            );
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "Cache-Control",
+                "max-age=0"
+            );
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "Connection",
+                "keep-alive"
+            );
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "Host",
+                "ehall.whu.edu.cn"
+            );
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "User-Agent",
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
+            );
+            JwCrawler.client.DefaultRequestHeaders.Add(
+                "Upgrade-Insecure-Requests",
+                "1"
+            );
+            // client.DefaultRequestHeaders.Add(
+            //     "Cookie",
+            //     "zg_did=%7B%22did%22%3A%20%221728cb08aed412-047d179103cc93-143e6257-1fa400-1728cb08aee9ea%22%7D; zg_=%7B%22sid%22%3A%201591498279666%2C%22updated%22%3A%201591498279672%2C%22info%22%3A%201591498279670%2C%22superProperty%22%3A%20%22%7B%7D%22%2C%22platform%22%3A%20%22%7B%7D%22%2C%22utm%22%3A%20%22%7B%7D%22%2C%22referrerDomain%22%3A%20%22ehall.whu.edu.cn%22%2C%22cuid%22%3A%20%222018302110296%22%7D;"
+            // );
+            client.DefaultRequestHeaders.Add(
+                "Cookie",
+                "amp.locale=undefined; "
+            );
+            
             // 打印响应头
             foreach(var head in response.Headers) {
                 Console.WriteLine($"response head key: {head.Key}");
@@ -193,8 +254,58 @@ namespace LuoJiaCampus_Server.Crawler {
                 Console.WriteLine();
             }
             Console.WriteLine();
+            
+            
+
+            // 打印请求头
+            foreach(var head in client.DefaultRequestHeaders) {
+                Console.WriteLine($"request head key: {head.Key}");
+                Console.Write("value: ");
+                foreach(string o in head.Value) {
+                    Console.Write(o + " ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
 
 
+
+
+
+
+
+            // 重定向拿到   MOD_AUTH_CAS 和 asessionid
+            string redirectStr = response.Headers.GetValues("Location").FirstOrDefault();
+            
+            response = client.GetAsync(redirectStr).Result;
+
+            Console.WriteLine("return status: " + response.StatusCode);
+            
+            foreach(Cookie c in handler.CookieContainer.GetCookies(new Uri(redirectStr))) {
+                Console.WriteLine(c.ToString()+"\n");
+                if(c.ToString().Split("=").First() == "asessionid")
+                    asessionid = c.ToString();
+                else if(c.ToString().Split("=").First() == "MOD_AUTH_CAS")
+                    MOD_AUTH_CAS = c.ToString();
+            }
+
+            Console.WriteLine("MOD_AUTH_CAS: " + MOD_AUTH_CAS);
+            Console.WriteLine("asessionid: " + asessionid);
+            Console.WriteLine("iPlanetDirectoryPro: " + iPlanetDirectoryPro);
+            Console.WriteLine("route: " + route);
+            Console.WriteLine("CASTGC: " + CASTGC);
+
+            // 打印响应头
+            foreach(var head in response.Headers) {
+                Console.WriteLine($"response head key: {head.Key}");
+                Console.Write("value: ");
+                foreach(string o in head.Value) {
+                    Console.Write(o + " ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            
             
             
             
@@ -627,6 +738,8 @@ namespace LuoJiaCampus_Server.Crawler {
                 }
                 Console.WriteLine();
             }
+
+            handler.CookieContainer.GetCookies(new Uri("http://ehall.whu.edu.cn/appShow?appId=5054874232878111")).Clear();
         }
 
         public static void expireCookie(string domain) {
