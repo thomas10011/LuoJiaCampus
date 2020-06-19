@@ -25,7 +25,7 @@ namespace STUDENTINFO
 
             if (login.DialogResult == DialogResult.OK)
             {
-                Application.Run(new MainFrm(2018302110245));
+                Application.Run(new MainFrm(login.ID));
                 login.Dispose();
             }
             else if (login.DialogResult == DialogResult.Cancel)

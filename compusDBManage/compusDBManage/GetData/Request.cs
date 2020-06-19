@@ -166,11 +166,8 @@ namespace compusDBManage
                     responseResult = sr.ReadToEnd();
                     sr.Close();
                     cnblogsRespone.Close();
-                    userinfo = responseResult;
-                    JObject jobject = (JObject)JsonConvert.DeserializeObject(userinfo);
-                    string ID1 = (string)jobject["id"];
-                    this.ID = Int64.Parse(ID1);//网页系统的json格式的返回值，在responseResult里，具体内容就是网页系统负责工程师跟你协议号的返回值协议内容
-                    return userinfo;
+                    usercourse = responseResult;//网页系统的json格式的返回值，在responseResult里，具体内容就是网页系统负责工程师跟你协议号的返回值协议内容
+                    return usercourse;
                 }
 
             }
