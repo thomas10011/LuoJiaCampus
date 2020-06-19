@@ -1,5 +1,8 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace LuoJiaCampus_Server.Models {
     public class CourseScore {
+        [Key]
         public long courseid { get; set; }              // 课程id
         public string courseName { get; set; }          // 课程名
         public string courseType { get; set; }          // 课程类型
@@ -12,7 +15,6 @@ namespace LuoJiaCampus_Server.Models {
         public short year { get; set; }                 // 学年
         public bool term { get; set; }                  // 学期
         public float score { get; set; }                // 成绩  -1表示还没出成绩
-        
         public long userid { get; set; }                // 用户id
         
     }

@@ -1,12 +1,14 @@
 "filename", "language", "C#", "JSON", "XML", "JavaScript", "comment", "blank", "total"
-"/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/AuthenticateController.cs", "C#", 81, 0, 0, 0, 15, 19, 115
-"/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/CourseScoreController.cs", "C#", 49, 0, 0, 0, 5, 8, 62
-"/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/CourseTableController.cs", "C#", 50, 0, 0, 0, 5, 10, 65
+"/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/AuthenticateController.cs", "C#", 82, 0, 0, 0, 15, 19, 116
+"/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/CourseScoreController.cs", "C#", 50, 0, 0, 0, 5, 7, 62
+"/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/CourseTableController.cs", "C#", 51, 0, 0, 0, 5, 10, 66
+"/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/NetWorkController.cs", "C#", 87, 0, 0, 0, 12, 16, 115
 "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/NewsController.cs", "C#", 25, 0, 0, 0, 1, 3, 29
 "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Controllers/UserInfoController.cs", "C#", 38, 0, 0, 0, 3, 3, 44
 "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Crawler/CourseScoreCrawler.cs", "C#", 15, 0, 0, 0, 129, 3, 147
 "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Crawler/CourseTableCrawler.cs", "C#", 74, 0, 0, 0, 53, 9, 136
-"/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Crawler/JwCrawler.cs", "C#", 210, 0, 0, 0, 404, 29, 643
+"/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Crawler/JwCrawler.cs", "C#", 284, 0, 0, 0, 421, 53, 758
+"/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Crawler/NetWorkCrawler.cs", "C#", 71, 0, 0, 0, 158, 13, 242
 "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Crawler/StudentInfoCrawler.cs", "C#", 46, 0, 0, 0, 48, 5, 99
 "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/Crawler/encrypt.js", "JavaScript", 0, 0, 0, 518, 2, 8, 528
 "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/LuoJiaCampus_Server.csproj", "XML", 0, 0, 16, 0, 0, 5, 21
@@ -58,4 +60,4 @@
 "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/Release/netcoreapp3.1/LuoJiaCampus_Server.MvcApplicationPartsAssemblyInfo.cs", "C#", 4, 0, 0, 0, 9, 5, 18
 "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/Release/netcoreapp3.1/staticwebassets/LuoJiaCampus_Server.StaticWebAssets.xml", "XML", 0, 0, 1, 0, 0, 0, 1
 "/Users/thomas/Desktop/LuoJiaCampus/LuoJiaCampus_Server/obj/project.assets.json", "JSON", 0, 5210, 0, 0, 0, 0, 5210
-"Total", "-", 853, 46339, 39, 1036, 717, 188, 49172
+"Total", "-", 1088, 46339, 39, 1036, 904, 240, 49646

@@ -48,6 +48,19 @@ namespace LuoJiaCampus_Server.Controllers {
             JwCrawler.loginJw();
             List<CourseScore> score = CourseScoreCrawler.crawlCourseScore(Convert.ToInt64(token_id));
             JwCrawler.logout();
+            // 成绩顺便保存到数据库中
+            foreach(CourseScore s in score) {
+                CourseScore sQuery = db.courseScore.Where(
+                    o =>
+                    o.courseid == s.courseid
+                    && o.userid == s.userid
+                ).FirstOrDefault();
+
+                if(sQuery == null && s.score != -1)
+                    db.courseScore.Add(s);
+            }
+
+            db.SaveChanges();
             return score;
 
         }
