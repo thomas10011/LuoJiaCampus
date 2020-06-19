@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.NodeServices;
 using System.Threading.Tasks;
-using LuoJiaCampus_Server.jw_Crawler;
+using LuoJiaCampus_Server.Crawler;
 
 namespace LuoJiaCampus_Server.Controllers {
     [ApiController]
@@ -45,6 +45,7 @@ namespace LuoJiaCampus_Server.Controllers {
             // 调用爬虫
             JwCrawler.initAttributes();
             JwCrawler.login(query.id, getPwdEncrypted(query.portalpwd, JwCrawler.dynamicPwdEncryptSalt).Result);
+            JwCrawler.loginJw();    // 登录教务
             List<Course> courses = CourseTableCrawler.crawlCourseTable();
             JwCrawler.logout();
             return courses;

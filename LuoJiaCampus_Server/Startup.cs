@@ -58,7 +58,7 @@ namespace LuoJiaCampus_Server {
                 // replace with your connection string
                 .UseMySql(Configuration.GetConnectionString("DefaultConnection"), mySqlOptions => mySqlOptions
                     // replace with your Server Version and Type
-                    .ServerVersion(new Version(8, 0, 19), ServerType.MySql)
+                    .ServerVersion(new Version(8, 0, 20), ServerType.MySql)
                 ));
 
             services.AddControllers();

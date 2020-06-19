@@ -5,7 +5,7 @@ using HtmlAgilityPack;
 using LuoJiaCampus_Server.Models;
 using Newtonsoft.Json;
 
-namespace LuoJiaCampus_Server.jw_Crawler {
+namespace LuoJiaCampus_Server.Crawler {
     public class StudentInfoCrawler {
         public static User crawlStudentInfo() {
             JwCrawler.client.DefaultRequestHeaders.Clear(); 
