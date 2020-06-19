@@ -76,7 +76,35 @@ namespace LuoJiaCampus_Server.Controllers {
             return Ok();
         }
 
+        [HttpGet]
+        [Route("suspendNetwork")]
+        public ActionResult suspendNetwork() {
+            JwCrawler.initAttributes();
 
+            // 得到当前的http请求
+            var req = HttpContext.Request;
+            string tokenToDecode = req.Headers["Authorization"].ToString().Split(' ').Last();     // 获取token
+            // 解码的token转化为json对象
+            JObject token = (JObject)JsonConvert.DeserializeObject(DecodeJwt.decode(tokenToDecode));
+            string token_id = token["sub"].ToString();      // 拿到id
+            Console.WriteLine($"id frome token: {token_id}");
+
+            // 根据id从数据库里面查询密码
+            User query = db.users.FirstOrDefault(
+                o => o.id == Convert.ToInt64(token_id)
+            );
+            // 调用爬虫
+            JwCrawler.initAttributes();
+            JwCrawler.login(query.id, getPwdEncrypted(query.portalpwd, JwCrawler.dynamicPwdEncryptSalt).Result);
+
+            NetworkCrawler.CrawlNetorkStatus(query.id);
+            NetworkCrawler.suspendNetwork(query.id);
+            JwCrawler.logout();
+            return Ok();
+
+
+
+        }
         public async Task<string> getPwdEncrypted(string pwdToEncrypt, string salt) {
             Console.WriteLine("try encrypt");
             string pwd = await nodeServices.InvokeAsync<string>(Constants.encryptJsRoute, pwdToEncrypt, salt);
