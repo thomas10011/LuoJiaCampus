@@ -16,7 +16,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using gradeclass;
+using compusDBManage;
 
 namespace STUDENTINFO
 {
@@ -64,9 +64,6 @@ namespace STUDENTINFO
             }
         }
 
-        private void LoadForm_Load(object sender, EventArgs e)
-        {
 
-        }
     }
 }

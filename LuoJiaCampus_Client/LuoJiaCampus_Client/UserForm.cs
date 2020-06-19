@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using compusDBManage;
 
 namespace STUDENTINFO
 {
@@ -23,6 +24,15 @@ namespace STUDENTINFO
         public UserForm()
         {
             InitializeComponent();
+        }
+        public UserForm(User user) : this()
+        {
+            this.name = user.nmae;
+            this.id = user.id;
+            this.grade = user.grade;
+            this.school = user.school;
+            this.major = user.major;
+            this.gender = user.gender;
         }
 
         private void pictureButton_Click(object sender, EventArgs e)//使用openFileDialog控件查看并获取图片路径

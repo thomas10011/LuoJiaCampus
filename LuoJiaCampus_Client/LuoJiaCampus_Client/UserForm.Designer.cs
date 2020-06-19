@@ -60,12 +60,6 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.SuspendLayout();
-            this.name = "沈宜欣";
-            this.id = 2018302110170;
-            this.grade = 2018;
-            this.school = "计算机学院";
-            this.major = "计算机科学与技术";
-            this.gender = "女";
             // 
             // splitContainer1
             // 
