@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using compusDBManage;
 
 namespace STUDENTINFO
 {
@@ -16,6 +17,7 @@ namespace STUDENTINFO
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             LoadForm login = new LoadForm();
 
             //界面转换
@@ -25,7 +27,7 @@ namespace STUDENTINFO
             {
                 Application.Run(new MainFrm(login.ID));
                 login.Dispose();
-        }
+            }
             else if (login.DialogResult == DialogResult.Cancel)
             {
                 login.Dispose();

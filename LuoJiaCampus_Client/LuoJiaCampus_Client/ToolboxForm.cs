@@ -13,9 +13,14 @@ namespace STUDENTINFO
     public partial class ToolboxForm : Form
     {
         public Form form=new Form();
+        long ID { get; set; }
         public ToolboxForm()
         {
             InitializeComponent();
+        }
+        public ToolboxForm(long id):this()
+        {
+            ID = id;
         }
         private void Openchildform(Form childform)
         {
@@ -36,7 +41,7 @@ namespace STUDENTINFO
 
         private void grade_Click(object sender, EventArgs e)
         {
-            Openchildform(new GradeForm());
+            Openchildform(new GradeForm(ID));
         }
 
         private void iconButton2_Click(object sender, EventArgs e)
@@ -52,11 +57,6 @@ namespace STUDENTINFO
         private void iconButton4_Click(object sender, EventArgs e)
         {
             MessageBox.Show("此功能待开发");
-        }
-
-        private void ToolboxForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

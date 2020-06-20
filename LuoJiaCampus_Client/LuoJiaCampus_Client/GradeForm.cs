@@ -7,16 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using gradeclass;
+using compusDBManage;
 
 namespace STUDENTINFO
 {
     public partial class GradeForm : Form
     {
+        public long ID { get; set; }
+        public CourseScore courseScore = new CourseScore(); 
         public string Year { get; set; }
         public string Type { get; set; }
         public string Term { get; set; }
-        public GradeService gradeService = new GradeService();
         double countcredit = 0;
         double creditscore = 0;
         double creditpoint = 0;
@@ -24,6 +25,11 @@ namespace STUDENTINFO
         public string averagePoint { get; set; }
         public GradeForm()
         {
+
+        }
+        public GradeForm(long id):this()
+        {
+            this.ID = id;
             InitializeComponent();
             yearcomboBox.SelectedIndex = 0;
             courseTcomboBox.SelectedIndex = 0;
@@ -42,7 +48,7 @@ namespace STUDENTINFO
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("造字工房悦圆演示版常规体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             //databandings数据绑定
-            dataGridView1.DataSource = gradeService.scores;
+            courseScoreBindingSource.DataSource=courseScore.QueryAll("全部","全部","全部",ID);
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 row.Cells["计算"].Value = 0;
@@ -53,8 +59,8 @@ namespace STUDENTINFO
 
         private void button1_Click(object sender, EventArgs e)
         {
-            gradeService.findcourcescore(yearcomboBox.Text, courseTcomboBox.Text, termcomboBox.Text);
-            dataGridView1.DataSource = gradeService.scores;
+            courseScoreBindingSource.DataSource=courseScore.QueryAll(yearcomboBox.Text, courseTcomboBox.Text, termcomboBox.Text,ID);
+            courseScoreBindingSource.ResetBindings(true);
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -86,8 +92,8 @@ namespace STUDENTINFO
                 if (Convert.ToBoolean(dgvCheck.EditedFormattedValue) == false)
                 {
                     dgvCheck.Value = true;
-                    String numeber1 = dataGridView1.CurrentRow.Cells["成绩"].Value.ToString();
-                    String numeber2 = dataGridView1.CurrentRow.Cells["学分"].Value.ToString();
+                    String numeber1 = dataGridView1.CurrentRow.Cells["score"].Value.ToString();
+                    String numeber2 = dataGridView1.CurrentRow.Cells["credits"].Value.ToString();
                     score = double.Parse(numeber1);
                     if (score > 89) point = 4.0;
                     else if (score > 84) point = 3.7;
@@ -128,5 +134,61 @@ namespace STUDENTINFO
                 }
             }
         }
+        private void ExportExcels(string fileName, DataGridView myDGV)
+        {
+            string saveFileName = "";
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.DefaultExt = "xls";
+            saveDialog.Filter = "Excel文件|*.xls";
+            saveDialog.FileName = fileName;
+            saveDialog.ShowDialog();
+            saveFileName = saveDialog.FileName;
+            if (saveFileName.IndexOf(":") < 0) return; //被点了取消
+            Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+            if (xlApp == null)
+            {
+                MessageBox.Show("无法创建Excel对象，可能您的机子未安装Excel");
+                return;
+            }
+            Microsoft.Office.Interop.Excel.Workbooks workbooks = xlApp.Workbooks;
+            Microsoft.Office.Interop.Excel.Workbook workbook = workbooks.Add(Microsoft.Office.Interop.Excel.XlWBATemplate.xlWBATWorksheet);
+            Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets[1];//取得sheet1
+                                                                                                                                  //写入标题
+            for (int i = 0; i < myDGV.ColumnCount; i++)
+            {
+                worksheet.Cells[1, i + 1] = myDGV.Columns[i].HeaderText;
+            }
+            //写入数值
+            for (int r = 0; r < myDGV.Rows.Count; r++)
+            {
+                for (int i = 0; i < myDGV.ColumnCount-2; i++)
+                {
+                    worksheet.Cells[r + 2, i + 1] = myDGV.Rows[r].Cells[i].Value;
+                }
+                System.Windows.Forms.Application.DoEvents();
+            }
+            worksheet.Columns.EntireColumn.AutoFit();//列宽自适应
+            if (saveFileName != "")
+            {
+                try
+                {
+                    workbook.Saved = true;
+                    workbook.SaveCopyAs(saveFileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("导出文件时出错,文件可能正被打开！\n" + ex.Message);
+                }
+            }
+            xlApp.Quit();
+            GC.Collect();//强行销毁
+            MessageBox.Show("文件： " + fileName + ".xls 保存成功", "信息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+                String fileName = "成绩单";
+                ExportExcels(fileName, dataGridView1);
+        }
+
     }
 }

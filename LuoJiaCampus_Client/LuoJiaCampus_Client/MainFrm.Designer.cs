@@ -67,7 +67,7 @@
             this.toolButton.FlatAppearance.BorderSize = 0;
             this.toolButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.toolButton.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.toolButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.toolButton.Font = new System.Drawing.Font("方正字迹-吕建德字体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.toolButton.ForeColor = System.Drawing.Color.White;
             this.toolButton.IconChar = FontAwesome.Sharp.IconChar.Tools;
             this.toolButton.IconColor = System.Drawing.Color.White;
@@ -91,7 +91,7 @@
             this.wordButton.FlatAppearance.BorderSize = 0;
             this.wordButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.wordButton.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.wordButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.wordButton.Font = new System.Drawing.Font("方正字迹-吕建德字体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.wordButton.ForeColor = System.Drawing.Color.White;
             this.wordButton.IconChar = FontAwesome.Sharp.IconChar.PaperPlane;
             this.wordButton.IconColor = System.Drawing.Color.White;
@@ -115,7 +115,7 @@
             this.courceButton.FlatAppearance.BorderSize = 0;
             this.courceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.courceButton.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.courceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.courceButton.Font = new System.Drawing.Font("方正字迹-吕建德字体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.courceButton.ForeColor = System.Drawing.Color.White;
             this.courceButton.IconChar = FontAwesome.Sharp.IconChar.CalendarAlt;
             this.courceButton.IconColor = System.Drawing.Color.White;
@@ -150,12 +150,12 @@
             this.collegebox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.collegebox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(72)))), ((int)(((byte)(157)))));
             this.collegebox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.collegebox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.collegebox.Font = new System.Drawing.Font("中山行书百年纪念版", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.collegebox.ForeColor = System.Drawing.Color.White;
             this.collegebox.Location = new System.Drawing.Point(3, 236);
             this.collegebox.Name = "collegebox";
             this.collegebox.ReadOnly = true;
-            this.collegebox.Size = new System.Drawing.Size(201, 28);
+            this.collegebox.Size = new System.Drawing.Size(201, 24);
             this.collegebox.TabIndex = 4;
             this.collegebox.Text = "计算机学院";
             this.collegebox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -165,12 +165,12 @@
             this.numberbox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.numberbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(72)))), ((int)(((byte)(157)))));
             this.numberbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.numberbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.numberbox.Font = new System.Drawing.Font("方正硬笔行书简体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.numberbox.ForeColor = System.Drawing.Color.White;
             this.numberbox.Location = new System.Drawing.Point(3, 200);
             this.numberbox.Name = "numberbox";
             this.numberbox.ReadOnly = true;
-            this.numberbox.Size = new System.Drawing.Size(201, 25);
+            this.numberbox.Size = new System.Drawing.Size(201, 21);
             this.numberbox.TabIndex = 3;
             this.numberbox.Text = "2018302110253";
             this.numberbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -180,12 +180,12 @@
             this.namebox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.namebox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(72)))), ((int)(((byte)(157)))));
             this.namebox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.namebox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.namebox.Font = new System.Drawing.Font("中山行书百年纪念版", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.namebox.ForeColor = System.Drawing.Color.White;
             this.namebox.Location = new System.Drawing.Point(0, 170);
             this.namebox.Name = "namebox";
             this.namebox.ReadOnly = true;
-            this.namebox.Size = new System.Drawing.Size(201, 28);
+            this.namebox.Size = new System.Drawing.Size(201, 24);
             this.namebox.TabIndex = 6;
             this.namebox.Text = "蒋海澜";
             this.namebox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -219,7 +219,6 @@
             this.childformdesk.Name = "childformdesk";
             this.childformdesk.Size = new System.Drawing.Size(808, 573);
             this.childformdesk.TabIndex = 4;
-            this.childformdesk.Paint += new System.Windows.Forms.PaintEventHandler(this.childformdesk_Paint);
             // 
             // CloseButton
             // 
@@ -242,11 +241,11 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Font = new System.Drawing.Font("中山行书百年纪念版", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(38, 12);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 27);
+            this.label1.Size = new System.Drawing.Size(125, 27);
             this.label1.TabIndex = 0;
             this.label1.Text = "珞珈校园";
             // 
@@ -264,7 +263,9 @@
             // 
             // MainFrm
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(72)))), ((int)(((byte)(157)))));
             this.ClientSize = new System.Drawing.Size(1034, 637);
             this.Controls.Add(this.childformdesk);

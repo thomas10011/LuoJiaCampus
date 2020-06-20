@@ -10,11 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
+using compusDBManage;
 
 namespace STUDENTINFO
 {
     public partial class MainFrm : Form
     {
+        public User user = new User();
         public long ID { get; set; }
         public String sname { get; set; }
         public String sno { get; set; }
@@ -43,11 +45,16 @@ namespace STUDENTINFO
             numberbox.DataBindings.Add("Text", this, "sno");
             collegebox.DataBindings.Add("Text", this, "scollege");
             picture.DataBindings.Add("Image", this, "bitmap");
+
         }
-        public MainFrm(long ID) : this()
+        public MainFrm(long id) : this()
         {
-            sno = ID.ToString();
-            Get_info(ID);
+            this.ID = id;
+            sno = id.ToString();
+            user=user.queryId(id);
+            sname = user.nmae;
+            scollege = user.school;
+            Openchildform(new UserForm(user));
         }
         private struct RGBcolors
         {
@@ -115,28 +122,29 @@ namespace STUDENTINFO
 
         private void picture_Click(object sender, EventArgs e)
         {
-            //个人信息
-            Openchildform(new UserForm());
+            DisiableButton();
+            leftBorderBton.BackColor = this.BackColor;
+            Openchildform(new UserForm(user));
         }
         private void courceButton_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBcolors.color1);
             //课程表
-            Openchildform(new CourseList());
+            Openchildform(new CourseList(ID));
         }
 
         private void wordButton_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBcolors.color2);
             //新鲜事
-            Openchildform(new NoveltyForm());
+            Openchildform(new NoveltyForm(ID));
         }
 
         private void toolButton_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBcolors.color3);
             //工具箱
-            Openchildform(new ToolboxForm());
+            Openchildform(new ToolboxForm(ID));
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -155,9 +163,6 @@ namespace STUDENTINFO
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void childformdesk_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
     }
 }
