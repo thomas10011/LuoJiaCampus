@@ -34,19 +34,16 @@ namespace compusDBManage
             {
                 JObject courseScore = (JObject)ja[i];
                 this.score = (short)courseScore["score"];
-                this.gradePoint = (double)courseScore["point"];
+                this.gradePoint = 0;
                 this.courseid = (long)courseScore["courseid"];
                 this.userid = (long)courseScore["userid"];
-                this.courseType = courseScore["cousety"].ToString();
-                this.credits = (short)courseScore["credits"];
+                this.courseType = courseScore["courseType"].ToString();
+                this.credits = (double)courseScore["credits"];
                 this.courseName = courseScore["courseName"].ToString();
-                this.teacherName = courseScore["techer"].ToString();
+                this.teacherName = courseScore["teacherName"].ToString();
                 this.school = courseScore["school"].ToString();
                 this.Year = (short)courseScore["year"];
-                string Term = courseScore["term"].ToString();
-
-                if (Term.Contains("2")) { this.Term = true; }
-                else { this.Term = false; }
+                this.Term= (bool)courseScore["term"];
 
                 CourseScore score = new CourseScore(this.courseName,this.score, this.gradePoint, this.courseid, this.userid, this.courseType, this.credits, this.teacherName, this.school, this.Year, this.Term);
                 score.addCourseScore(score);

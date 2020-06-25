@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
+using System.ComponentModel.DataAnnotations.Schema;
+using compusDBManage;
 
 namespace STUDENTINFO
 {
@@ -16,21 +20,24 @@ namespace STUDENTINFO
     {
         public long ID { set; get; }
         public Form form = new Form();
-        
-            public static Color color1 = Color.FromArgb(239, 133, 123);
-            public static Color color2 = Color.FromArgb(247, 218, 130);
-            public static Color color3 = Color.FromArgb(205, 187, 228);
+        DataTable dt = new DataTable();
+        public static Color color1 = Color.FromArgb(239, 133, 123);
+        public static Color color2 = Color.FromArgb(247, 218, 130);
+        public static Color color3 = Color.FromArgb(205, 187, 228);
         public CourseTable()
         {
             InitializeComponent();
         }
-        public CourseTable(long id):this()
+        public CourseTable(long id) : this()
         {
             ID = id;
-            int week;//星期
-            int num;//开始节数
+            dtinitial();
+            dtweek(10);
+            this.dataGridView1.DataSource = dt;
 
-            DataTable dt = new DataTable();
+        }
+        private void dtinitial()
+        {
             dt.Columns.Add("节次", typeof(string));
             dt.Columns.Add("一", typeof(string));
             dt.Columns.Add("二", typeof(string));
@@ -60,39 +67,74 @@ namespace STUDENTINFO
             dt.Rows[10][0] = "11";
             dt.Rows[11][0] = "12";
             dt.Rows[12][0] = "13";
-
-            for (int j = 1; j < 8; j++)
+        }
+        private void dtweek(int WEEK)
+        {
+            Course course1 = new Course();
+            List<Course> hhh = course1.queryAll(ID);
+            foreach (Course course in hhh)
             {
-                for (int i = 0; i < 13; i++)
+
+                int weekday = 1;//星期
+                int num;//开始节数
+                int end;
+                int weeknum1;
+                int weeknum2;
+                string weektype;
+                string place;
+                string pattern1 = @"(?<day>(Mon|Tue|Wed|Thu|Fir|Sat|Sun)):(?<weeknum1>(\d+))-(?<weeknum2>(\d+))周,(?<weektype>.?.?.?);(?<num>(\d+))-(?<end>(\d+))节(,?)(?<place>(.?.?.?.?.?.?.?.?))";
+                Regex rx = new Regex(pattern1);
+                Match x = rx.Match(course.courseTime);
+                MatchCollection mc = rx.Matches(course.courseTime);
+                foreach (Match m in mc)
                 {
-                    if (i == 0) num = i + 1;
-                    else num = i;
-                    week = j;
-                    string sql = "SELECT `courseName`,`weeknum`,`place`,`end` FROM `courses` WHERE num='" + num.ToString() + "' and week = '" + week.ToString() + "'and userid= '" + ID.ToString() + "'";//拼凑SQL语句。 
-                    MySqlConnection conn = new MySqlConnection("server=localhost;port=3306;user=root;password=jhl794613285; database=luojia_campus;");
-                    conn.Open();
+                    switch (m.Groups["day"].Value)
 
-                    MySqlCommand command = new MySqlCommand(sql, conn);
-                    MySqlDataReader reader = command.ExecuteReader();
-
-                    while (reader.Read())
                     {
-                        string sum = reader.GetValue(0).ToString() + "\n" +
-                            reader.GetValue(1).ToString() + "\n" +
-                            reader.GetValue(2).ToString();//显示信息
-                        int end = Convert.ToInt32(reader.GetValue(3));//结束节数
-                        for (i=num-1; i < end;i++ )
+
+                        case "Mon": weekday = 1; break;
+
+                        case "Tue": weekday = 2; break;
+
+                        case "Wed": weekday = 3; break;
+
+                        case "Thu": weekday = 4; break;
+
+                        case "Fir": weekday = 5; break;
+
+                        case "Sat": weekday = 6; break;
+
+                        case "Sun": weekday = 7; break;
+
+                        default: break;
+                    }
+
+                    weeknum1 = Int32.Parse(m.Groups["weeknum1"].Value);
+
+                    weeknum2 = Int32.Parse(m.Groups["weeknum2"].Value);
+
+                    weektype = m.Groups["weektype"].Value;
+
+                    num = Int32.Parse(m.Groups["num"].Value);
+
+                    end = Int32.Parse(m.Groups["end"].Value);
+
+                    place = m.Groups["place"].Value;
+                    if (WEEK <= weeknum2 && WEEK >= weeknum1)
+                    {
+                        if ((weektype == "每1周") || (weektype == "单周" && WEEK % 2 == 1) || (weektype == "双周" && WEEK % 2 == 0))
                         {
-                            dt.Rows[i][j] = sum;
+                            for (int i = num - 1; i < end; i++)
+                            {
+                                string sum = course.courseName + "\n" + course.teacherName + "\n" + place;
+                                dt.Rows[i][weekday] = sum;
+                            }
                         }
                     }
-                    conn.Close();
+
                 }
+
             }
-
-
-            this.dataGridView1.DataSource = dt;
-
         }
         private void Openchildform(Form childform)
         {
@@ -139,7 +181,7 @@ namespace STUDENTINFO
                         e.Graphics.FillRectangle(backColorBrush, e.CellBounds);
                         // 画 Grid 边线（仅画单元格的底边线和右边线）
                         //   如果下一行和当前行的数据不同，则在当前的单元格画一条底边线
-                        if ( e.Value.ToString() == DBNull.Value.ToString() ||(e.RowIndex < dataGridView1.Rows.Count - 1&&
+                        if ( e.Value.ToString() == DBNull.Value.ToString() ||(e.RowIndex < dataGridView1.Rows.Count - 2&&
                         dataGridView1.Rows[e.RowIndex + 1].Cells[e.ColumnIndex].Value.ToString() != e.Value.ToString()))
                             e.Graphics.DrawLine(gridLinePen, e.CellBounds.Left,
                             e.CellBounds.Bottom - 1, e.CellBounds.Right - 1,
@@ -216,6 +258,7 @@ namespace STUDENTINFO
                 MessageBox.Show("无法创建Excel对象，可能您的机子未安装Excel");
                 return;
             }
+
             Microsoft.Office.Interop.Excel.Workbooks workbooks = xlApp.Workbooks;
             Microsoft.Office.Interop.Excel.Workbook workbook = workbooks.Add(Microsoft.Office.Interop.Excel.XlWBATemplate.xlWBATWorksheet);
             Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets[1];//取得sheet1
@@ -255,6 +298,14 @@ namespace STUDENTINFO
         {
             String fileName = "课表";
             ExportExcels(fileName, dataGridView1);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dt = new DataTable();
+            dtinitial();
+            dtweek(Int32.Parse(comboBox1.Text));
+            this.dataGridView1.DataSource = dt;
         }
     }
 }

@@ -92,7 +92,7 @@
             this.btnCalendar.Location = new System.Drawing.Point(775, 39);
             this.btnCalendar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCalendar.Name = "btnCalendar";
-            this.btnCalendar.Size = new System.Drawing.Size(91, 31);
+            this.btnCalendar.Size = new System.Drawing.Size(142, 31);
             this.btnCalendar.TabIndex = 8;
             this.btnCalendar.Text = "周历模式";
             this.btnCalendar.UseVisualStyleBackColor = false;

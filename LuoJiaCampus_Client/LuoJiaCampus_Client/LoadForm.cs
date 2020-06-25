@@ -57,7 +57,6 @@ namespace STUDENTINFO
             if (!request.connect) this.warn.Visible = true;
             else
             {
-                MessageBox.Show(request.usercourse);
                 this.DialogResult = DialogResult.OK;
                 this.Dispose();
                 this.Close();

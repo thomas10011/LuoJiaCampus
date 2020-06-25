@@ -20,7 +20,7 @@ namespace compusDBManage
     public class Request
     {
         public long ID { get; set; }
-        public string Token { get; set; }
+        public string token { get; set; }
         public string userinfo { get; set; }
         public string usercourse { get; set; }
         public string userscore { get; set; }
@@ -33,7 +33,7 @@ namespace compusDBManage
             {
                 getCourse course = new getCourse(get_course(),Int64.Parse(a));
                 getCourseScore coursescore = new getCourseScore(get_score());
-                getUser user = new getUser(get_info());              
+                getUser user = new getUser(get_info(),this.token);              
             };           
         }
 
@@ -92,7 +92,9 @@ namespace compusDBManage
                 using (sr = new StreamReader(cnblogsRespone.GetResponseStream()))
                 {
                     responseResult = sr.ReadToEnd();
-                    this.Token = responseResult;
+                    string Token = responseResult;
+                    JObject jObject = (JObject)JsonConvert.DeserializeObject(Token);
+                    this.token = (string)jObject["token"];
                     sr.Close();
                     cnblogsRespone.Close();
                     return true;//网页系统的json格式的返回值，在responseResult里，具体内容就是网页系统负责工程师跟你协议号的返回值协议内容
@@ -103,8 +105,7 @@ namespace compusDBManage
 
         public string get_info()
         {
-            JObject jObject = (JObject)JsonConvert.DeserializeObject(Token);
-            string token = (string)jObject["token"];
+            
             Encoding myEncoding = Encoding.GetEncoding("gb2312");  //选择编码字符集
             string responseResult = String.Empty;
             HttpWebRequest req = (HttpWebRequest)
@@ -141,8 +142,6 @@ namespace compusDBManage
 
         public string get_course()
         {
-            JObject jObject = (JObject)JsonConvert.DeserializeObject(Token);
-            string token = (string)jObject["token"];
             Encoding myEncoding = Encoding.GetEncoding("gb2312");  //选择编码字符集
             string responseResult = String.Empty;
             HttpWebRequest req = (HttpWebRequest)
@@ -177,8 +176,7 @@ namespace compusDBManage
 
         public string get_score()
         {
-            JObject jObject = (JObject)JsonConvert.DeserializeObject(Token);
-            string token = (string)jObject["token"];
+
             Encoding myEncoding = Encoding.GetEncoding("gb2312");  //选择编码字符集
             string responseResult = String.Empty;
             HttpWebRequest req = (HttpWebRequest)
@@ -209,6 +207,66 @@ namespace compusDBManage
             else { return null; }
 
         }
+        public void campuswifi_off(string Token)
+        {
+
+            Encoding myEncoding = Encoding.GetEncoding("gb2312");  //选择编码字符集
+            string responseResult = String.Empty;
+            HttpWebRequest req = (HttpWebRequest)
+            HttpWebRequest.Create("https://localhost:5001/api/NetWork/suspendNetwork");   //创建一个有效的httprequest请求，地址和端口和指定路径必须要和网页系统工程师确认正确，不然一直通讯不成功
+            req.Method = "GET";
+            req.Accept = "HTTP";
+            req.Headers.Add("Authorization", "bearer " + Token + "");
+            req.ContentType =
+            "application/json";
+            HttpWebResponse cnblogsRespone = null;
+            try { cnblogsRespone = (HttpWebResponse)req.GetResponse(); }
+            catch (WebException ex)
+            {
+            }
+            if (cnblogsRespone != null && cnblogsRespone.StatusCode == HttpStatusCode.OK)
+            {
+                StreamReader sr;
+                using (sr = new StreamReader(cnblogsRespone.GetResponseStream()))
+                {
+                    responseResult = sr.ReadToEnd();
+                    sr.Close();
+                    cnblogsRespone.Close();//网页系统的json格式的返回值，在responseResult里，具体内容就是网页系统负责工程师跟你协议号的返回值协议内容
+                }
+            }
+
+        }
+        public void campuswifi_on(string Token)
+        {
+
+            Encoding myEncoding = Encoding.GetEncoding("gb2312");  //选择编码字符集
+            string responseResult = String.Empty;
+            HttpWebRequest req = (HttpWebRequest)
+            HttpWebRequest.Create("https://localhost:5001/api/NetWork/resumeNetwork");   //创建一个有效的httprequest请求，地址和端口和指定路径必须要和网页系统工程师确认正确，不然一直通讯不成功
+            req.Method = "GET";
+            req.Accept = "HTTP";
+            req.Headers.Add("Authorization", "bearer " + Token + "");
+            req.ContentType =
+            "application/json";
+            HttpWebResponse cnblogsRespone = null;
+            try { cnblogsRespone = (HttpWebResponse)req.GetResponse(); }
+            catch (WebException ex)
+            {
+            }
+            if (cnblogsRespone != null && cnblogsRespone.StatusCode == HttpStatusCode.OK)
+            {
+                StreamReader sr;
+                using (sr = new StreamReader(cnblogsRespone.GetResponseStream()))
+                {
+                    responseResult = sr.ReadToEnd();
+                    sr.Close();
+                    cnblogsRespone.Close();//网页系统的json格式的返回值，在responseResult里，具体内容就是网页系统负责工程师跟你协议号的返回值协议内容
+                }
+            }
+            else { }
+
+        }
+
         public Request copy_request(Request b)
         {
             return b;

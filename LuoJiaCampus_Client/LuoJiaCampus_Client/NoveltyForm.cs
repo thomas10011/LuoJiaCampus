@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using compusDBManage;
+using System.Drawing.Drawing2D;
 
 namespace STUDENTINFO
 {
@@ -133,9 +134,9 @@ namespace STUDENTINFO
         {
             try
             {
-                newnews = new News(textBox2.Text, "0", ID);
+                newnews = new News(richTextBox1.Rtf, "0", ID);
                 newnews.Add(newnews);
-                textBox2.Text = null;
+                richTextBox1.Text = null;
                 news = newnews.Query();
                 iniWindow();
             }
@@ -147,18 +148,13 @@ namespace STUDENTINFO
 
         private void button3_Click(object sender, EventArgs e)
         {
-            try
-            {
-                newnews = new News(textBox1.Text, "1", ID);
+
+                newnews = new News(richTextBox2.Rtf, "1", ID);
                 newnews.Add(newnews);
-                textBox1.Text = null;
+                richTextBox2.Text = null;
                 news = newnews.Query();
                 iniWindow();
-            }
-            catch (Exception a)
-            {
-                MessageBox.Show("输入值为空");
-            }
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -166,6 +162,63 @@ namespace STUDENTINFO
             Openchildform(new WordForm(ID,"1"));
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (!height1) panel3.Size = new Size(panel3.Size.Width, panel3.Size.Height + 100);
+            height1 = true;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "图片文件|*.jpg|所有文件|*.*";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Image img = Image.FromFile(openFileDialog1.FileName);
+                Bitmap bitmap = new Bitmap(img);
+                Clipboard.SetDataObject(resizeImage(bitmap, new Size(150,150)), false);
+                richTextBox1.Paste();
+            }
+        }
+        private static Image resizeImage(Image imgToResize, Size size)
+        {
+            //获取图片宽度
+            int sourceWidth = imgToResize.Width;
+            //获取图片高度
+            int sourceHeight = imgToResize.Height;
 
+            float nPercent = 0;
+            float nPercentW = 0;
+            float nPercentH = 0;
+            //计算宽度的缩放比例
+            nPercentW = ((float)size.Width / (float)sourceWidth);
+            //计算高度的缩放比例
+            nPercentH = ((float)size.Height / (float)sourceHeight);
+
+            if (nPercentH < nPercentW)
+                nPercent = nPercentH;
+            else
+                nPercent = nPercentW;
+            //期望的宽度
+            int destWidth = (int)(sourceWidth * nPercent);
+            //期望的高度
+            int destHeight = (int)(sourceHeight * nPercent);
+
+            Bitmap b = new Bitmap(destWidth, destHeight);
+            Graphics g = Graphics.FromImage((System.Drawing.Image)b);
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            //绘制图像
+            g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
+            g.Dispose();
+            return (System.Drawing.Image)b;
+        }
+        private bool height1 = false;
+        private void richTextBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(!height1) panel3.Size = new Size(panel3.Size.Width, panel3.Size.Height + 100);
+            height1 = true;
+        }
+
+        private void richTextBox1_MouseLeave(object sender, EventArgs e)
+        {
+            if (height1) panel3.Size = new Size(panel3.Size.Width, panel3.Size.Height - 100);
+            height1 = false;
+        }
     }
 }

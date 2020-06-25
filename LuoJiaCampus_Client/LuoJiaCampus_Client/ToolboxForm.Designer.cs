@@ -77,7 +77,7 @@
             this.iconButton2.Rotation = 0D;
             this.iconButton2.Size = new System.Drawing.Size(261, 57);
             this.iconButton2.TabIndex = 1;
-            this.iconButton2.Text = " 图书馆预约";
+            this.iconButton2.Text = " 给分查询";
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton2.UseVisualStyleBackColor = true;
             this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
@@ -99,7 +99,7 @@
             this.iconButton3.Rotation = 0D;
             this.iconButton3.Size = new System.Drawing.Size(261, 59);
             this.iconButton3.TabIndex = 2;
-            this.iconButton3.Text = " 校园网充值";
+            this.iconButton3.Text = " 校园网启停";
             this.iconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton3.UseVisualStyleBackColor = true;
             this.iconButton3.Click += new System.EventHandler(this.iconButton3_Click);
@@ -156,7 +156,6 @@
             // 
             // ToolboxForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);

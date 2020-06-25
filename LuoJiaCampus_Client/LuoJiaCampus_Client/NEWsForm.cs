@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using compusDBManage;
+using System.Runtime.InteropServices;
 
 namespace STUDENTINFO
 {
@@ -18,7 +19,7 @@ namespace STUDENTINFO
         public NEWsForm()
         {
             this.TopLevel = false;
-            InitializeComponent();                     
+            InitializeComponent();
         }
         public NEWsForm(News a,long id) : this()
         {
@@ -26,7 +27,7 @@ namespace STUDENTINFO
             this.news = a;
             this.label1.Text = a.commentNum.ToString();
             this.label2.Text = a.rates.ToString();
-            this.textBox1.Text = a.text;
+            this.richTextBox1.Rtf = a.text.ToString();
             User user = new User();
             if (a.type=="1") this.textBox2.Text = user.queryId(a.userid).nmae.ToString()+ a.userid;
             else this.textBox2.Text = a.id.ToString();
@@ -63,5 +64,25 @@ namespace STUDENTINFO
 
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "图片文件|*.jpg|所有文件|*.*";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Clipboard.SetDataObject(Image.FromFile(openFileDialog1.FileName), false);
+                richTextBox1.Paste();
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

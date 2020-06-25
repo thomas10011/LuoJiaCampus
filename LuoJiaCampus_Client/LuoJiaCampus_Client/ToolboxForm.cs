@@ -46,12 +46,14 @@ namespace STUDENTINFO
 
         private void iconButton2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("此功能待开发");
+            Openchildform(new scoreq());
         }
 
+        private Form1 form1 = new Form1();
         private void iconButton3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("此功能待开发");
+            Form1 form1 = new Form1(ID);
+            Openchildform(form1);
         }
 
         private void iconButton4_Click(object sender, EventArgs e)

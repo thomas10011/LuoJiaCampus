@@ -23,10 +23,11 @@ namespace compusDBManage
         public string school { get; set; }
         public string gender { get; set; }
         public string major { get; set; }
-        public string avatar { get; set; }           //头像路径
+        public string avatar { get; set; }
+        public string Token { get; set; } //头像路径
 
         public User() { }
-        public User(long id1,short grade1,string pw,string poralpw,string name,string school1,string gender1,string  major1,string avatar1) {
+        public User(long id1,short grade1,string pw,string poralpw,string name,string school1,string gender1,string  major1,string avatar1,string token) {
 
             this.id = id1;
             this.grade = grade1;
@@ -37,6 +38,7 @@ namespace compusDBManage
             this.school = school1;
             this.major = major1;
             this.avatar = avatar1;
+            this.Token = token;
         }
 
         public void Add(User us)

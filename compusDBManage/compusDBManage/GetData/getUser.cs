@@ -24,13 +24,9 @@ namespace compusDBManage
         public string avatar { get; set; }
 
         public getUser() { }
-        public getUser(string jsonArrayText1)
+        public getUser(string jsonArrayText1,string token)
         {
-            JArray ja = (JArray)JsonConvert.DeserializeObject(jsonArrayText1);
-            int i = 0;
-            while (i<ja.Count)
-            {
-                JObject us = (JObject)ja[i];
+            JObject us = (JObject)JsonConvert.DeserializeObject(jsonArrayText1);
                 this.id = (long)us["id"];
                 this.grade = (short)us["grade"];
                 this.password = us["password"].ToString();
@@ -41,9 +37,9 @@ namespace compusDBManage
                 this.major = us["major"].ToString();
                 this.avatar = us["avatar"].ToString();
 
-                User user = new User(this.id, this.grade, this.password, this.portalpwd, this.nmae, this.school, this.gender, this.major,this.avatar);
+                User user = new User(this.id, this.grade, this.password, this.portalpwd, this.nmae, this.school, this.gender, this.major,this.avatar,token);
                 user.Add(user);
-            }
+            
         }
     }
 }

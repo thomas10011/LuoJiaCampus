@@ -98,7 +98,32 @@ namespace compusDBManage
             }
             return cs;
         }
-       
+        public List<CourseScore> Query1(string name)
+        {
+            List<CourseScore> cs = new List<CourseScore>();
+            using (var context = new compusDB())
+            {
+                cs = context.CourseScore.Where(p => p.teacherName == name).ToList();
+            }
+            foreach (CourseScore course in cs)
+            {
+                Console.WriteLine(course.school);
+            }
+            return cs;
+        }
+        public List<CourseScore> Query2(string name)
+        {
+            List<CourseScore> cs = new List<CourseScore>();
+            using (var context = new compusDB())
+            {
+                cs = context.CourseScore.Where(p => p.courseName == name).ToList();
+            }
+            foreach (CourseScore course in cs)
+            {
+                Console.WriteLine(course.school);
+            }
+            return cs;
+        }
         //a,b,c
         public List<CourseScore> QueryAll(string a, string b, string c,long ID)
         {
